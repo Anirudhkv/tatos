@@ -145,10 +145,12 @@ Container(
      child: Container(
       
         padding:EdgeInsets.fromLTRB(25, 20, 25, 20),
-        child: RaisedButton(
-                    child: Text('Continue with google',style: TextStyle(color:Colors.white70),),
+        child: RaisedButton.icon(
+                    icon: Icon(MyFlutterApp.google),
+                    label: Text('Continue with google',style: TextStyle(color:Colors.white70),),
                     color:Color.fromRGBO(225, 160, 103, 1),
                     onPressed: () {},
+                    
                   ),
      ),
    ),
