@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './home.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class LoginPage extends StatefulWidget {
@@ -35,6 +36,7 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       _obscureText = true;
     });
+    Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
   }
 
   @override
