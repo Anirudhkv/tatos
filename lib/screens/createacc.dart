@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-class LoginPage extends StatefulWidget {
+class Createacc extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _CreateaccState createState() => _CreateaccState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _CreateaccState extends State<Createacc> {
   final _formKey = GlobalKey<FormState>();
   var _passwordFocus = FocusNode();
   var _loginFocus = FocusNode();
@@ -48,20 +48,27 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.13),
-                    Text(
-                      "Welcome Back",
-                      style: TextStyle(
-                          color: Colors.brown,
-                          fontSize: 27,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                    Text('Signing up or \nlogin to see our top picks for you.',
+                     SizedBox(height: MediaQuery.of(context).size.height * 0.13),
+                    Padding(
+              
+                      padding: const EdgeInsets.only(left: 60),
+                      child: Text(
+                        "Create an account",
                         style: TextStyle(
                             color: Colors.brown,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w300)),
+                            fontSize: 27,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 60),
+                      child: Text('Signing up or login to see \n     our top picks for you.',
+                          style: TextStyle(
+                              color: Colors.brown,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w300)),
+                    ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                     Form(
                       key: _formKey,
@@ -147,6 +154,40 @@ class _LoginPageState extends State<LoginPage> {
                                                 .requestFocus(_loginFocus);
                                             _next();
                                           }),
+                                          SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.015),
+                                      TextFormField(
+                                          textInputAction: TextInputAction.done,
+                                          focusNode: _passwordFocus,
+                                          obscureText: _obscureText,
+                                          decoration: InputDecoration(
+                                            hintText: 'Confirm password',
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.brown[300]),
+                                                borderRadius:
+                                                    BorderRadius.circular(7)),
+                                            suffixIcon: IconButton(
+                                              icon: Icon(_obscureText
+                                                  ? Icons.lock
+                                                  : Icons.lock_open),
+                                              onPressed: _toggle,
+                                            ),
+                                          ),
+                                          validator: (value) {
+                                            if (value.isEmpty) {
+                                              return "Password not entered";
+                                            }
+                                            return null;
+                                          },
+                                          onFieldSubmitted: (value) {
+                                            FocusScope.of(context)
+                                                .requestFocus(_loginFocus);
+                                            _next();
+                                          }),
                                       SizedBox(
                                           height: MediaQuery.of(context)
                                                   .size
@@ -178,34 +219,34 @@ class _LoginPageState extends State<LoginPage> {
                                                   .size
                                                   .height *
                                               0.03),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            'Forgot Password?',
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                color: Colors.brown),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          Text("Reset password",style: TextStyle(fontSize: 17,color: Colors.blueGrey),)
-                                        ],
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 60),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              'Forgot Password?',
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  color: Colors.brown),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            Text(
+                                              '  Reset here',
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  color: Colors.blue),
+                                              
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                       SizedBox(
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height *
-                                              0.07),
-                                      Text(
-                                        'Or Login with',
-                                        style: TextStyle(
-                                            fontSize: 17, color: Colors.brown),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.02),
+                                              0.04),
+                                     
+                                      
                                       Container(
                                         height: 50,
                                         child: ElevatedButton(
@@ -242,6 +283,25 @@ class _LoginPageState extends State<LoginPage> {
                                               ),
                                             )),
                                       ),
+                                       Padding(
+                                         padding: const EdgeInsets.only(left:80,top:30),
+                                         child: Row(
+                                           children: [
+                                             Text(
+                                              'No account ?',
+                                              style: TextStyle(
+                                                  fontSize: 17, color: Colors.brown),
+                                              textAlign: TextAlign.center,
+                                      ),
+                                      Text(
+                                              ' Create one',
+                                              style: TextStyle(
+                                                  fontSize: 17, color: Colors.blue),
+                                              textAlign: TextAlign.center,
+                                      ),
+                                           ],
+                                         ),
+                                       ),
                                     ],
                                   )
                                 ],
