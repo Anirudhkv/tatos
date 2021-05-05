@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import './login.dart';
 
-class Createacc extends StatefulWidget {
+class CreateAccountScreen extends StatefulWidget {
   @override
-  _CreateaccState createState() => _CreateaccState();
+  _CreateAccountScreenState createState() => _CreateAccountScreenState();
 }
 
-class _CreateaccState extends State<Createacc> {
+class _CreateAccountScreenState extends State<CreateAccountScreen> {
   final _formKey = GlobalKey<FormState>();
   var _passwordFocus = FocusNode();
   var _loginFocus = FocusNode();
@@ -48,9 +49,8 @@ class _CreateaccState extends State<Createacc> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     SizedBox(height: MediaQuery.of(context).size.height * 0.13),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.13),
                     Padding(
-              
                       padding: const EdgeInsets.only(left: 60),
                       child: Text(
                         "Create an account",
@@ -63,7 +63,8 @@ class _CreateaccState extends State<Createacc> {
                     SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                     Padding(
                       padding: const EdgeInsets.only(left: 60),
-                      child: Text('Signing up or login to see \n     our top picks for you.',
+                      child: Text(
+                          'Signing up or login to see \n     our top picks for you.',
                           style: TextStyle(
                               color: Colors.brown,
                               fontSize: 20,
@@ -154,7 +155,7 @@ class _CreateaccState extends State<Createacc> {
                                                 .requestFocus(_loginFocus);
                                             _next();
                                           }),
-                                          SizedBox(
+                                      SizedBox(
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height *
@@ -220,7 +221,8 @@ class _CreateaccState extends State<Createacc> {
                                                   .height *
                                               0.03),
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 60),
+                                        padding:
+                                            const EdgeInsets.only(left: 60),
                                         child: Row(
                                           children: [
                                             Text(
@@ -230,12 +232,16 @@ class _CreateaccState extends State<Createacc> {
                                                   color: Colors.brown),
                                               textAlign: TextAlign.center,
                                             ),
-                                            Text(
-                                              '  Reset here',
-                                              style: TextStyle(
-                                                  fontSize: 17,
-                                                  color: Colors.blue),
-                                              
+                                            InkWell(
+                                              onTap: () => Navigator.of(context)
+                                                  .pushReplacementNamed(
+                                                      LoginPage.routeName),
+                                              child: Text(
+                                                '  Reset here',
+                                                style: TextStyle(
+                                                    fontSize: 17,
+                                                    color: Colors.blue),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -245,8 +251,6 @@ class _CreateaccState extends State<Createacc> {
                                                   .size
                                                   .height *
                                               0.04),
-                                     
-                                      
                                       Container(
                                         height: 50,
                                         child: ElevatedButton(
@@ -283,25 +287,28 @@ class _CreateaccState extends State<Createacc> {
                                               ),
                                             )),
                                       ),
-                                       Padding(
-                                         padding: const EdgeInsets.only(left:80,top:30),
-                                         child: Row(
-                                           children: [
-                                             Text(
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 80, top: 30),
+                                        child: Row(
+                                          children: [
+                                            Text(
                                               'No account ?',
                                               style: TextStyle(
-                                                  fontSize: 17, color: Colors.brown),
+                                                  fontSize: 17,
+                                                  color: Colors.brown),
                                               textAlign: TextAlign.center,
-                                      ),
-                                      Text(
+                                            ),
+                                            Text(
                                               ' Create one',
                                               style: TextStyle(
-                                                  fontSize: 17, color: Colors.blue),
+                                                  fontSize: 17,
+                                                  color: Colors.blue),
                                               textAlign: TextAlign.center,
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                           ],
-                                         ),
-                                       ),
                                     ],
                                   )
                                 ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class LoginPage extends StatefulWidget {
+  static const routeName = '/login_page';
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -178,17 +179,19 @@ class _LoginPageState extends State<LoginPage> {
                                                   .size
                                                   .height *
                                               0.03),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            'Forgot Password?',
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                color: Colors.brown),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          Text("Reset password",style: TextStyle(fontSize: 17,color: Colors.blueGrey),)
-                                        ],
+                                      RichText(
+                                        text: TextSpan(
+                                          text: 'Forgot Password? ',
+                                          style: TextStyle(
+                                              color: Colors.brown,
+                                              fontFamily: 'Lato'),
+                                          children: <TextSpan>[
+                                            TextSpan(
+                                                text: 'Reset password',
+                                                style: TextStyle(
+                                                    color: Colors.blueGrey)),
+                                          ],
+                                        ),
                                       ),
                                       SizedBox(
                                           height: MediaQuery.of(context)

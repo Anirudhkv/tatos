@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import './screens/createacc.dart';
+import 'screens/login.dart';
+import './screens/create_account_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +14,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(fontFamily: 'Lato'),
       debugShowCheckedModeBanner: false,
       title: 'Elegant Furnitures',
-      home: Createacc(),
+      home: CreateAccountScreen(),
+      routes: {
+        LoginPage.routeName: (context) => LoginPage(),
+      },
     );
   }
 }
