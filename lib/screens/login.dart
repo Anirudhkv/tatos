@@ -166,7 +166,7 @@ class _LoginPageState extends State<LoginPage> {
                                             child: Container(
                                               width: double.infinity,
                                               child: Text(
-                                                'Get Started',
+                                                'Log In',
                                                 style: TextStyle(
                                                     fontSize: 20,
                                                     color: Colors.white),
