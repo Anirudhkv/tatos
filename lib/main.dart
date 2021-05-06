@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'screens/login.dart';
 import './screens/create_account_screen.dart';
 import './screens/home.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 

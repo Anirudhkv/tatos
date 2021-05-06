@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "767733029145",
+    "project_id": "intern-9e15f",
+    "storage_bucket": "intern-9e15f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767733029145:android:908115482a141acc040d88",
+        "android_client_info": {
+          "package_name": "com.tatos.elegant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767733029145-ci6n4ccf1hiosss60e5gl8p1grbg0n34.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPKVN-oMyPt2RJsj_OchlMRhYQkGE7YW8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767733029145-ci6n4ccf1hiosss60e5gl8p1grbg0n34.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
