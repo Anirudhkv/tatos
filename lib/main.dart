@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intern/screens/checkout.dart';
 import 'screens/login.dart';
 import './screens/create_account_screen.dart';
 import './screens/home.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       title: 'Elegant Furnitures',
-      home: CreateAccountScreen(),
+      home: Checkout(),
       routes: {
         LoginPage.routeName: (context) => LoginPage(),
         HomeScreen.routeName: (context) => HomeScreen()
