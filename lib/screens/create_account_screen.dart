@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intern/screens/home.dart';
-import 'package:intern/utils/authentication.dart';
+import 'package:intern/utils/google_sign_in.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import './login.dart';
+import '../utils/email_password.dart';
+import '../widgets/success_dialog.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   @override
@@ -16,6 +18,11 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   var _loginFocus = FocusNode();
   var _obscureText = true;
   var _passwordController = TextEditingController();
+  var _isLoading = false;
+  Map<String, String> _authData = {
+    'email': '',
+    'password': '',
+  };
   @override
   void dispose() {
     // TODO: implement dispose
@@ -36,9 +43,47 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     if (!_formKey.currentState.validate()) {
       return;
     }
-    //_formKey.currentState.save();
+
+    _formKey.currentState.save();
     setState(() {
       _obscureText = true;
+      _isLoading = true;
+    });
+    signUp(_authData['email'], _authData['password'])
+        .then((value) => value != null
+            ? showDialog(
+                context: context,
+                builder: (ctx) => AlertDialog(
+                  title: Text("Success"),
+                  content: Text("You have successfully registered"),
+                  actions: <Widget>[
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(ctx).pop();
+                      },
+                      child: Text("okay"),
+                    ),
+                  ],
+                ),
+              )
+            : showDialog(
+                context: context,
+                builder: (ctx) => AlertDialog(
+                  title: Text("Failed"),
+                  content: Text(
+                      "Failed in registering!!\nThis may due to duplicate accounts"),
+                  actions: <Widget>[
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(ctx).pop();
+                      },
+                      child: Text("okay"),
+                    ),
+                  ],
+                ),
+              ));
+    setState(() {
+      _isLoading = false;
     });
   }
 
@@ -89,14 +134,17 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                         BorderSide(color: Colors.brown[300]),
                                     borderRadius: BorderRadius.circular(7))),
                             validator: (value) {
-                              if (value.isEmpty) {
-                                return "Email Id not entered";
+                              if (value.isEmpty || !value.contains('@')) {
+                                return "Invalid Email";
                               }
                               return null;
                             },
                             onFieldSubmitted: (value) {
                               FocusScope.of(context)
                                   .requestFocus(_passwordFocus);
+                            },
+                            onSaved: (value) {
+                              _authData['email'] = value;
                             },
                           ),
                           SizedBox(
@@ -105,33 +153,37 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                           Column(
                             children: [
                               TextFormField(
-                                  controller: _passwordController,
-                                  textInputAction: TextInputAction.next,
-                                  focusNode: _passwordFocus,
-                                  obscureText: _obscureText,
-                                  decoration: InputDecoration(
-                                    hintText: 'Password',
-                                    border: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.brown[300]),
-                                        borderRadius: BorderRadius.circular(7)),
-                                    suffixIcon: IconButton(
-                                      icon: Icon(_obscureText
-                                          ? Icons.lock
-                                          : Icons.lock_open),
-                                      onPressed: _toggle,
-                                    ),
+                                controller: _passwordController,
+                                textInputAction: TextInputAction.next,
+                                focusNode: _passwordFocus,
+                                obscureText: _obscureText,
+                                decoration: InputDecoration(
+                                  hintText: 'Password',
+                                  border: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.brown[300]),
+                                      borderRadius: BorderRadius.circular(7)),
+                                  suffixIcon: IconButton(
+                                    icon: Icon(_obscureText
+                                        ? Icons.lock
+                                        : Icons.lock_open),
+                                    onPressed: _toggle,
                                   ),
-                                  validator: (value) {
-                                    if (value.isEmpty) {
-                                      return "Password not entered";
-                                    }
-                                    return null;
-                                  },
-                                  onFieldSubmitted: (value) {
-                                    FocusScope.of(context)
-                                        .requestFocus(_confirmpasswordFocus);
-                                  }),
+                                ),
+                                validator: (value) {
+                                  if (value.isEmpty || value.length < 5) {
+                                    return "Password is too short (Min 5)";
+                                  }
+                                  return null;
+                                },
+                                onFieldSubmitted: (value) {
+                                  FocusScope.of(context)
+                                      .requestFocus(_confirmpasswordFocus);
+                                },
+                                onSaved: (value) {
+                                  _authData['password'] = value;
+                                },
+                              ),
                               SizedBox(
                                   height: MediaQuery.of(context).size.height *
                                       0.015),
@@ -171,24 +223,26 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                       0.03),
                               Container(
                                 height: 50,
-                                child: ElevatedButton(
-                                    style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                Colors.green),
-                                        elevation:
-                                            MaterialStateProperty.all<double>(
-                                                5)),
-                                    onPressed: _next,
-                                    child: Container(
-                                      width: double.infinity,
-                                      child: Text(
-                                        'Get Started',
-                                        style: TextStyle(
-                                            fontSize: 20, color: Colors.white),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    )),
+                                child: (_isLoading)
+                                    ? CircularProgressIndicator()
+                                    : ElevatedButton(
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all<
+                                                    Color>(Colors.green),
+                                            elevation: MaterialStateProperty
+                                                .all<double>(5)),
+                                        onPressed: _next,
+                                        child: Container(
+                                          width: double.infinity,
+                                          child: Text(
+                                            'Get Started',
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.white),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),
                               ),
                               SizedBox(
                                   height: MediaQuery.of(context).size.height *
@@ -229,16 +283,19 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                         elevation:
                                             MaterialStateProperty.all<double>(
                                                 5)),
-                                  onPressed: () => {
-                              signInWithGoogle().then((value) => {
-                                    if (value != null)
-                                      {
-                                    Navigator.of(context).pushReplacementNamed(HomeScreen.routeName)
-                                      }
-                                    else
-                                      {print("error found")}
-                                  })
-                            },
+                                    onPressed: () => {
+                                          signInWithGoogle().then((value) => {
+                                                if (value != null)
+                                                  {
+                                                    Navigator.of(context)
+                                                        .pushReplacementNamed(
+                                                            HomeScreen
+                                                                .routeName)
+                                                  }
+                                                else
+                                                  {print("error found")}
+                                              })
+                                        },
                                     child: Container(
                                       width: double.infinity,
                                       child: Row(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:intern/utils/authentication.dart';
+import 'package:intern/utils/google_sign_in.dart';
 import './home.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import '../utils/email_password.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/login_page';
@@ -14,6 +15,11 @@ class _LoginPageState extends State<LoginPage> {
   var _passwordFocus = FocusNode();
   var _loginFocus = FocusNode();
   var _obscureText = true;
+  Map<String, String> _authData = {
+    'email': '',
+    'password': '',
+  };
+  var _isLoading = false;
 
   @override
   void dispose() {
@@ -33,11 +39,22 @@ class _LoginPageState extends State<LoginPage> {
     if (!_formKey.currentState.validate()) {
       return;
     }
-    //_formKey.currentState.save();
+    _formKey.currentState.save();
     setState(() {
       _obscureText = true;
+      _isLoading = true;
     });
-    Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+    signIn(_authData['email'], _authData['password']).then((value) => {
+          if (value != null)
+            {
+              setState(() {
+                _isLoading = false;
+              }),
+              Navigator.of(context).pushReplacementNamed(HomeScreen.routeName)
+            }
+          else
+            {print('error found')}
+        });
   }
 
   @override
@@ -96,10 +113,14 @@ class _LoginPageState extends State<LoginPage> {
                                             borderRadius:
                                                 BorderRadius.circular(7))),
                                     validator: (value) {
-                                      if (value.isEmpty) {
-                                        return "Email Id not entered";
+                                      if (value.isEmpty ||
+                                          !value.contains('@')) {
+                                        return "Invalid Email";
                                       }
                                       return null;
+                                    },
+                                    onSaved: (value) {
+                                      _authData['email'] = value;
                                     },
                                     onFieldSubmitted: (value) {
                                       FocusScope.of(context)
@@ -146,6 +167,9 @@ class _LoginPageState extends State<LoginPage> {
                                             }
                                             return null;
                                           },
+                                          onSaved: (value) {
+                                            _authData['password'] = value;
+                                          },
                                           onFieldSubmitted: (value) {
                                             FocusScope.of(context)
                                                 .requestFocus(_loginFocus);
@@ -158,24 +182,28 @@ class _LoginPageState extends State<LoginPage> {
                                               0.03),
                                       Container(
                                         height: 50,
-                                        child: ElevatedButton(
-                                            style: ButtonStyle(
-                                                backgroundColor:
-                                                    MaterialStateProperty.all<
-                                                        Color>(Colors.green),
-                                                elevation: MaterialStateProperty
-                                                    .all<double>(5)),
-                                            onPressed: _next,
-                                            child: Container(
-                                              width: double.infinity,
-                                              child: Text(
-                                                'Log In',
-                                                style: TextStyle(
-                                                    fontSize: 20,
-                                                    color: Colors.white),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            )),
+                                        child: _isLoading
+                                            ? CircularProgressIndicator()
+                                            : ElevatedButton(
+                                                style: ButtonStyle(
+                                                    backgroundColor:
+                                                        MaterialStateProperty
+                                                            .all<Color>(
+                                                                Colors.green),
+                                                    elevation:
+                                                        MaterialStateProperty
+                                                            .all<double>(5)),
+                                                onPressed: _next,
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  child: Text(
+                                                    'Log In',
+                                                    style: TextStyle(
+                                                        fontSize: 20,
+                                                        color: Colors.white),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                )),
                                       ),
                                       SizedBox(
                                           height: MediaQuery.of(context)
@@ -222,16 +250,24 @@ class _LoginPageState extends State<LoginPage> {
                                                         Colors.deepOrange),
                                                 elevation: MaterialStateProperty
                                                     .all<double>(5)),
-                                              onPressed: () => {
-                              signInWithGoogle().then((value) => {
-                                    if (value != null)
-                                      {
-                                    Navigator.of(context).pushReplacementNamed(HomeScreen.routeName)
-                                      }
-                                    else
-                                      {print("error found")}
-                                  })
-                            },
+                                            onPressed: () => {
+                                                  signInWithGoogle()
+                                                      .then((value) => {
+                                                            if (value != null)
+                                                              {
+                                                                Navigator.of(
+                                                                        context)
+                                                                    .pushReplacementNamed(
+                                                                        HomeScreen
+                                                                            .routeName)
+                                                              }
+                                                            else
+                                                              {
+                                                                print(
+                                                                    "error found")
+                                                              }
+                                                          })
+                                                },
                                             child: Container(
                                               width: double.infinity,
                                               child: Row(
