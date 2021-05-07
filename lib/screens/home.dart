@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/app_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../widgets/sliding_product.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home';
@@ -54,6 +56,34 @@ class HomeScreen extends StatelessWidget {
                         borderSide:
                             BorderSide(color: Theme.of(context).accentColor),
                         borderRadius: BorderRadius.circular(13))),
+              ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.5,
+              width: double.infinity,
+              child: Row(
+                children: <Widget>[
+                  StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance
+                          .collection('chairs')
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        return Expanded(
+                          child: ListView.builder(
+                            itemBuilder: (ctx, index) =>
+                                SlidingProduct(snapshot.data.docs[index]),
+                            itemCount: snapshot.data.docs.length,
+                            scrollDirection: Axis.horizontal,
+                          ),
+                        );
+                      }),
+                ],
               ),
             )
           ],

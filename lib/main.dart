@@ -3,8 +3,11 @@ import 'package:intern/screens/checkout.dart';
 import 'screens/login.dart';
 import './screens/create_account_screen.dart';
 import './screens/home.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       title: 'Elegant Furnitures',
-      home: Checkout(),
+      home: CreateAccountScreen(),
       routes: {
         LoginPage.routeName: (context) => LoginPage(),
         HomeScreen.routeName: (context) => HomeScreen()
