@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intern/utils/authentication.dart';
 
 class Checkout extends StatefulWidget {
+  static const routeName="/checkout";
+
   @override
   _CheckoutState createState() => _CheckoutState();
 }
@@ -47,7 +50,7 @@ class _CheckoutState extends State<Checkout> {
               ]),
               child: CircleAvatar(
                 radius: 60,
-                backgroundImage: AssetImage("asset/images/man.jpg"),
+                backgroundImage: NetworkImage(imageUrl),
               ),
             ),
             Column(

@@ -26,7 +26,8 @@ class MyApp extends StatelessWidget {
       home: CreateAccountScreen(),
       routes: {
         LoginPage.routeName: (context) => LoginPage(),
-        HomeScreen.routeName: (context) => HomeScreen()
+        HomeScreen.routeName: (context) => HomeScreen(),
+        Checkout.routeName: (context) => Checkout(),
       },
     );
   }

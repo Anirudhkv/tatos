@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intern/screens/checkout.dart';
+import 'package:intern/utils/authentication.dart';
 import '../widgets/app_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../widgets/sliding_product.dart';
@@ -42,15 +44,16 @@ class HomeScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                              image:
-                                  AssetImage('../../asset/images/propic.png'),
-                              fit: BoxFit.cover),
+                              image: NetworkImage(imageUrl), fit: BoxFit.cover),
                         ),
                       ),
                       radius: 25,
                     ),
                   ),
-                  onPressed: () => {})
+                  onPressed: () => {
+
+                   Navigator.of(context).pushReplacementNamed(Checkout.routeName) 
+                  })
             ],
             centerTitle: true,
             leading: Builder(
