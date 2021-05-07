@@ -8,6 +8,7 @@ final GoogleSignIn googleSignIn = GoogleSignIn();
 String name;
 String email;
 String imageUrl;
+String phoneNumber;
 
 Future<String> signInWithGoogle() async {
   await Firebase.initializeApp();
@@ -42,6 +43,7 @@ Future<String> signInWithGoogle() async {
     name = user.displayName;
     email = user.email;
     imageUrl = user.photoURL;
+    phoneNumber = user.phoneNumber;
 
     // Only taking the first part of the name, i.e., First Name
     if (name.contains(" ")) {
@@ -56,6 +58,6 @@ Future<String> signInWithGoogle() async {
 
 Future<void> signOutGoogle() async {
   await googleSignIn.signOut();
-
+  final User currentUser = null;
   print("User Signed Out");
 }

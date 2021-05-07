@@ -4,7 +4,6 @@ import 'package:intern/utils/google_sign_in.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import './login.dart';
 import '../utils/email_password.dart';
-import '../widgets/success_dialog.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   @override
@@ -19,6 +18,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   var _obscureText = true;
   var _passwordController = TextEditingController();
   var _isLoading = false;
+  var check;
   Map<String, String> _authData = {
     'email': '',
     'password': '',
@@ -285,6 +285,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                                 5)),
                                     onPressed: () => {
                                           signInWithGoogle().then((value) => {
+                                                check = 1,
                                                 if (value != null)
                                                   {
                                                     Navigator.of(context)
@@ -334,7 +335,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                     InkWell(
                                       onTap: () => Navigator.of(context)
                                           .pushReplacementNamed(
-                                              LoginPage.routeName),
+                                              LoginPage.routeName,
+                                              arguments: check),
                                       child: Text(
                                         ' LogIn',
                                         style: TextStyle(

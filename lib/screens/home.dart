@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:intern/screens/checkout.dart';
-import 'package:intern/utils/authentication.dart';
+import 'package:intern/utils/google_sign_in.dart';
 import '../widgets/app_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../widgets/sliding_product.dart';
 import '../widgets/item.dart';
 import '../widgets/drawer.dart';
+import '../screens/user_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home';
   @override
   Widget build(BuildContext context) {
+    final check = ModalRoute.of(context).settings.arguments;
     final mediaQuery = MediaQuery.of(context).size;
     return DefaultTabController(
       length: 2,
       child: Container(
         height: 10,
         child: Scaffold(
-          drawer: MainDrawer(),
+          drawer: MainDrawer(check),
           appBar: AppBar(
             bottom: TabBar(
               labelPadding: EdgeInsets.all(0),
@@ -39,21 +41,24 @@ class HomeScreen extends StatelessWidget {
                     child: CircleAvatar(
                       child: Container(
                         alignment: Alignment.center,
-                        width: 50,
-                        height: 50,
+                        width: 54,
+                        height: 54,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                              image: NetworkImage(imageUrl), fit: BoxFit.cover),
+                              image: check == 1
+                                  ? NetworkImage(imageUrl)
+                                  : AssetImage('asset/images/propic.png'),
+                              fit: BoxFit.cover),
                         ),
                       ),
                       radius: 25,
                     ),
                   ),
                   onPressed: () => {
-
-                   Navigator.of(context).pushReplacementNamed(Checkout.routeName) 
-                  })
+                        Navigator.of(context)
+                            .pushNamed(UserScreen.routeName, arguments: check)
+                      })
             ],
             centerTitle: true,
             leading: Builder(
@@ -80,19 +85,6 @@ class HomeScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold)),
             backgroundColor: Colors.white12,
             elevation: 0,
-            /*bottom: TabBar(
-              tabs: [
-                Tab(
-                  text: "New",
-                ),
-                Tab(
-                  text: "Popular",
-                ),
-                Tab(
-                  text: "Sale",
-                )
-              ],
-            ),*/
           ),
           body: TabBarView(children: [
             SingleChildScrollView(child: NewFurnitures()),

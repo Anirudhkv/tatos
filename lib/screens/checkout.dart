@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:intern/utils/authentication.dart';
+import 'package:intern/utils/google_sign_in.dart';
 
 class Checkout extends StatefulWidget {
-  static const routeName="/checkout";
+  static const routeName = "/checkout";
 
   @override
   _CheckoutState createState() => _CheckoutState();
@@ -12,16 +12,19 @@ class _CheckoutState extends State<Checkout> {
   bool isSwitched = false;
   @override
   Widget build(BuildContext context) {
+    final check = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         brightness: Brightness.dark,
-        elevation: 5,
+        elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           color: Colors.brown,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
           iconSize: 20,
         ),
         title: Container(
@@ -50,7 +53,9 @@ class _CheckoutState extends State<Checkout> {
               ]),
               child: CircleAvatar(
                 radius: 60,
-                backgroundImage: NetworkImage(imageUrl),
+                backgroundImage: check == 1
+                    ? NetworkImage(imageUrl)
+                    : AssetImage('asset/images/propic.png'),
               ),
             ),
             Column(
@@ -176,7 +181,7 @@ class _CheckoutState extends State<Checkout> {
                         child: Container(
                           width: double.infinity,
                           child: Text(
-                            'Next',
+                            'Update',
                             style: TextStyle(fontSize: 20, color: Colors.white),
                             textAlign: TextAlign.center,
                           ),

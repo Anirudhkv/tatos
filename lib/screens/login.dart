@@ -15,6 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   var _passwordFocus = FocusNode();
   var _loginFocus = FocusNode();
   var _obscureText = true;
+  var check;
   Map<String, String> _authData = {
     'email': '',
     'password': '',
@@ -45,12 +46,14 @@ class _LoginPageState extends State<LoginPage> {
       _isLoading = true;
     });
     signIn(_authData['email'], _authData['password']).then((value) => {
+          check = 0,
           if (value != null)
             {
               setState(() {
                 _isLoading = false;
               }),
-              Navigator.of(context).pushReplacementNamed(HomeScreen.routeName)
+              Navigator.of(context)
+                  .pushReplacementNamed(HomeScreen.routeName, arguments: check)
             }
           else
             {print('error found')}
@@ -253,13 +256,16 @@ class _LoginPageState extends State<LoginPage> {
                                             onPressed: () => {
                                                   signInWithGoogle()
                                                       .then((value) => {
+                                                            check = 1,
                                                             if (value != null)
                                                               {
                                                                 Navigator.of(
                                                                         context)
                                                                     .pushReplacementNamed(
                                                                         HomeScreen
-                                                                            .routeName)
+                                                                            .routeName,
+                                                                        arguments:
+                                                                            check)
                                                               }
                                                             else
                                                               {
