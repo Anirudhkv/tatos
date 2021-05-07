@@ -11,6 +11,7 @@ class HomeScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.only(left: 20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: MediaQuery.of(context).size.height * 0.06),
             Container(
@@ -60,7 +61,7 @@ class HomeScreen extends StatelessWidget {
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.04),
             Container(
-              height: MediaQuery.of(context).size.height * 0.5,
+              height: MediaQuery.of(context).size.height * 0.35,
               width: double.infinity,
               child: Row(
                 children: <Widget>[
@@ -85,7 +86,19 @@ class HomeScreen extends StatelessWidget {
                       }),
                 ],
               ),
-            )
+            ),
+            Divider(
+              color: Theme.of(context).primaryColor,
+              indent: 5,
+              endIndent: 5,
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+            Text('Categories',
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ))
           ],
         ),
       ),
