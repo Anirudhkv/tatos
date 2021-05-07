@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intern/utils/authentication.dart';
 import './home.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -221,7 +222,16 @@ class _LoginPageState extends State<LoginPage> {
                                                         Colors.deepOrange),
                                                 elevation: MaterialStateProperty
                                                     .all<double>(5)),
-                                            onPressed: () => {},
+                                              onPressed: () => {
+                              signInWithGoogle().then((value) => {
+                                    if (value != null)
+                                      {
+                                    Navigator.of(context).pushReplacementNamed(HomeScreen.routeName)
+                                      }
+                                    else
+                                      {print("error found")}
+                                  })
+                            },
                                             child: Container(
                                               width: double.infinity,
                                               child: Row(
