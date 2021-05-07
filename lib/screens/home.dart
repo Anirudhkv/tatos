@@ -9,6 +9,7 @@ class HomeScreen extends StatelessWidget {
   static const routeName = '/home';
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context).size;
     return DefaultTabController(
       length: 2,
       child: Container(
@@ -31,8 +32,23 @@ class HomeScreen extends StatelessWidget {
             actions: [
               FlatButton(
                   child: CircleAvatar(
-                    radius: 28,
                     backgroundColor: Theme.of(context).primaryColor,
+                    radius: 28,
+                    child: CircleAvatar(
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              image:
+                                  AssetImage('../../asset/images/propic.png'),
+                              fit: BoxFit.cover),
+                        ),
+                      ),
+                      radius: 25,
+                    ),
                   ),
                   onPressed: () => {})
             ],
