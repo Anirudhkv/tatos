@@ -5,6 +5,7 @@ import 'screens/login.dart';
 import './screens/create_account_screen.dart';
 import './screens/home.dart';
 import 'package:firebase_core/firebase_core.dart';
+import './screens/user_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         LoginPage.routeName: (context) => LoginPage(),
         HomeScreen.routeName: (context) => HomeScreen(),
         Checkout.routeName: (context) => Checkout(),
+        UserScreen.routeName: (context) => UserScreen()
       },
     );
   }

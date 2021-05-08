@@ -3,6 +3,7 @@ import 'package:intern/utils/google_sign_in.dart';
 import './home.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../utils/email_password.dart';
+import '../utils/database.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/login_page';
@@ -15,6 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   var _passwordFocus = FocusNode();
   var _loginFocus = FocusNode();
   var _obscureText = true;
+  var check;
   Map<String, String> _authData = {
     'email': '',
     'password': '',
@@ -45,12 +47,15 @@ class _LoginPageState extends State<LoginPage> {
       _isLoading = true;
     });
     signIn(_authData['email'], _authData['password']).then((value) => {
+          check = 0,
           if (value != null)
             {
               setState(() {
                 _isLoading = false;
               }),
-              Navigator.of(context).pushReplacementNamed(HomeScreen.routeName)
+              newUser(check == 1 ? userId : id),
+              Navigator.of(context)
+                  .pushReplacementNamed(HomeScreen.routeName, arguments: check)
             }
           else
             {print('error found')}
@@ -253,13 +258,20 @@ class _LoginPageState extends State<LoginPage> {
                                             onPressed: () => {
                                                   signInWithGoogle()
                                                       .then((value) => {
+                                                            check = 1,
                                                             if (value != null)
                                                               {
+                                                                newUser(
+                                                                    check == 1
+                                                                        ? userId
+                                                                        : id),
                                                                 Navigator.of(
                                                                         context)
                                                                     .pushReplacementNamed(
                                                                         HomeScreen
-                                                                            .routeName)
+                                                                            .routeName,
+                                                                        arguments:
+                                                                            check)
                                                               }
                                                             else
                                                               {
