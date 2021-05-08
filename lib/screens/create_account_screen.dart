@@ -295,7 +295,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                                     Navigator.of(context)
                                                         .pushReplacementNamed(
                                                             HomeScreen
-                                                                .routeName)
+                                                                .routeName,
+                                                                arguments: check)
                                                   }
                                                 else
                                                   {print("error found")}

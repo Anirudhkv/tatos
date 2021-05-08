@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Lato',
         primaryColor: Colors.brown,
+        
         accentColor: Colors.orange,
       ),
       debugShowCheckedModeBanner: false,
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
         LoginPage.routeName: (context) => LoginPage(),
         HomeScreen.routeName: (context) => HomeScreen(),
         Checkout.routeName: (context) => Checkout(),
-        UserScreen.routeName: (context) => UserScreen()
+        UserScreen.routeName: (context) => UserScreen(),
+        Rough.routeName: (context)=>Rough(),
       },
     );
   }

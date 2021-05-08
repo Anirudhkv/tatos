@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:intern/screens/rough.dart';
+
 
 class CartSymbol extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => {},
+      onTap: () => {
+        Navigator.of(context).pushNamed(Rough.routeName)
+      },
       child: Stack(children: [
         Container(
             child: Icon(Icons.add_shopping_cart_sharp,

@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 
 import 'home.dart';
 class Rough extends StatefulWidget {
+  static const routeName = "/rough";
+
   @override
   _RoughState createState() => _RoughState();
 }
 
 class _RoughState extends State<Rough> {
+   String istapped = '';
   @override
   Widget build(BuildContext context) {
      
@@ -222,9 +225,18 @@ topRight: Radius.circular(25)
                         padding: EdgeInsets.only(top:40,left: 35,right: 25,bottom: 10),
                              child: Container(
                                height: 55,
-                               child: RaisedButton(
+                              
+                               child: ElevatedButton(
+                                 style: ElevatedButton.styleFrom(
+                                   primary:Colors.green,
+                                 ),
+                                 
 onPressed: () {
-  Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+  
+   setState(() {
+                  istapped = 'Button tapped';
+                });
+  Navigator.of(context).pop();
 }, 
                 child: Container(
                   width: double.infinity,
@@ -240,21 +252,19 @@ onPressed: () {
                      style: TextStyle(
                        fontSize:20,
                        fontWeight: FontWeight.bold,
+                       color: Colors.white,
                      
                      ),
                      
                      ),
                    ),
-                   Icon(Icons.shopping_cart_outlined),
+                   Icon(Icons.shopping_cart_outlined,color: Colors.white,),
 
 
                  ],
                )), 
-                color: Colors.green,
-                textColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(12.0),
-                  ),
+               
+                
 
                                )
                              ),

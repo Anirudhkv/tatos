@@ -71,7 +71,7 @@ class MainDrawer extends StatelessWidget {
             title: Text("Sign Out"),
             onTap: () {
               check == 1 ? signOutGoogle() : signOut();
-              Navigator.of(context).pushReplacementNamed(LoginPage.routeName);
+              Navigator.of(context).pushNamed(LoginPage.routeName);
             },
           ),
         ],
