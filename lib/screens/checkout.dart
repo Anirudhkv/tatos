@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intern/utils/authentication.dart';
+import "package:intern/utils/google_sign_in.dart";
+
+import 'home.dart';
 
 class Checkout extends StatefulWidget {
   static const routeName="/checkout";
@@ -21,7 +23,9 @@ class _CheckoutState extends State<Checkout> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           color: Colors.brown,
-          onPressed: () {},
+          onPressed: () {
+        Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+          },
           iconSize: 20,
         ),
         title: Container(
@@ -47,7 +51,8 @@ class _CheckoutState extends State<Checkout> {
                   spreadRadius: 2,
                   blurRadius: 5,
                 )
-              ]),
+              ]
+              ),
               child: CircleAvatar(
                 radius: 60,
                 backgroundImage: NetworkImage(imageUrl),

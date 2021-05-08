@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intern/utils/authentication.dart';
+import "package:intern/utils/google_sign_in.dart";
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -37,7 +37,17 @@ class MainDrawer extends StatelessWidget {
               onTap: () {  
                 Navigator.pop(context);  
               },  
-            ),  
+            ), 
+              ListTile(  
+                leading: Icon(Icons.logout),
+              title: Text("Logout"),  
+              onTap: () {  
+                 signOutGoogle();
+              Navigator.of(context).pushReplacementNamed('/');
+
+              },  
+            ), 
+
           ],  
         ),  
       )  

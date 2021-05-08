@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intern/screens/checkout.dart';
-import 'package:intern/utils/authentication.dart';
+import "package:intern/utils/google_sign_in.dart";
 import '../widgets/app_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../widgets/sliding_product.dart';
@@ -35,19 +35,26 @@ class HomeScreen extends StatelessWidget {
               FlatButton(
                   child: CircleAvatar(
                     backgroundColor: Theme.of(context).primaryColor,
-                    radius: 28,
+                    radius: 25,
                     child: CircleAvatar(
                       child: Container(
                         alignment: Alignment.center,
                         width: 50,
                         height: 50,
                         decoration: BoxDecoration(
+                          boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(.5),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                )
+              ],
                           shape: BoxShape.circle,
                           image: DecorationImage(
                               image: NetworkImage(imageUrl), fit: BoxFit.cover),
                         ),
                       ),
-                      radius: 25,
+                      radius: 26,
                     ),
                   ),
                   onPressed: () => {
