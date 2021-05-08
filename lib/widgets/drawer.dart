@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intern/utils/google_sign_in.dart';
 import 'package:intern/utils/email_password.dart';
 import '../screens/login.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MainDrawer extends StatelessWidget {
   final check;
@@ -13,16 +14,36 @@ class MainDrawer extends StatelessWidget {
         // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: <Widget>[
-          UserAccountsDrawerHeader(
-            accountName: check == 1 ? Text(name) : null,
-            accountEmail: check == 1 ? Text(email) : Text(emailId),
-            currentAccountPicture: CircleAvatar(
-              backgroundColor: Colors.orange,
-              child: Text(
-                check == 1 ? "${name[0]}" : "${emailId[0].toUpperCase()}",
-                style: TextStyle(fontSize: 40.0),
-              ),
-            ),
+          StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection('users')
+                .doc(id)
+                .snapshots(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.hasError) {
+                return Text('Something went wrong');
+              }
+
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              }
+
+              return UserAccountsDrawerHeader(
+                accountName: check == 1
+                    ? Text(name)
+                    : (snapshot.data['name'] != null
+                        ? Text(snapshot.data['name'])
+                        : null),
+                accountEmail: check == 1 ? Text(email) : Text(emailId),
+                currentAccountPicture: CircleAvatar(
+                  backgroundColor: Colors.orange,
+                  child: Text(
+                    check == 1 ? "${name[0]}" : "${emailId[0].toUpperCase()}",
+                    style: TextStyle(fontSize: 40.0),
+                  ),
+                ),
+              );
+            },
           ),
           ListTile(
             leading: Icon(Icons.home),

@@ -9,6 +9,7 @@ String name;
 String email;
 String imageUrl;
 String phoneNumber;
+String userId;
 
 Future<String> signInWithGoogle() async {
   await Firebase.initializeApp();
@@ -44,6 +45,7 @@ Future<String> signInWithGoogle() async {
     email = user.email;
     imageUrl = user.photoURL;
     phoneNumber = user.phoneNumber;
+    userId = user.uid;
 
     // Only taking the first part of the name, i.e., First Name
     if (name.contains(" ")) {

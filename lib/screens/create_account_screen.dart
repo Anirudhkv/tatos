@@ -4,6 +4,7 @@ import 'package:intern/utils/google_sign_in.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import './login.dart';
 import '../utils/email_password.dart';
+import '../utils/database.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   @override
@@ -288,6 +289,9 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                                 check = 1,
                                                 if (value != null)
                                                   {
+                                                    newUser(check == 1
+                                                        ? userId
+                                                        : id),
                                                     Navigator.of(context)
                                                         .pushReplacementNamed(
                                                             HomeScreen

@@ -27,7 +27,7 @@ class SlidingProduct extends StatelessWidget {
                       },
                       splashColor: Colors.orangeAccent,
                       child: Hero(
-                          tag: _trendingReferance['imageUrl'],
+                          tag: '..',
                           child: FadeInImage(
                             placeholder: AssetImage(".."),
                             image: NetworkImage(_trendingReferance['imageUrl']),
@@ -91,21 +91,6 @@ class SlidingProduct extends StatelessWidget {
             )
           ],
         ),
-        /*SizedBox(
-          height: 30,
-        ),*/
-        /*Flexible(
-          fit: FlexFit.tight,
-          child: Text(
-            _trendingReferance['name'],
-            style: TextStyle(
-              color: Colors.black87,
-              fontWeight: FontWeight.w600,
-            ),
-            softWrap: true,
-            overflow: TextOverflow.fade,
-          ),
-        )*/
       ],
     );
   }

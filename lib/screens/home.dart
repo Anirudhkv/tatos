@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intern/screens/checkout.dart';
+import 'package:intern/utils/email_password.dart';
 import 'package:intern/utils/google_sign_in.dart';
 import '../widgets/app_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -35,24 +35,27 @@ class HomeScreen extends StatelessWidget {
             toolbarHeight: 110,
             actions: [
               FlatButton(
-                  child: CircleAvatar(
-                    backgroundColor: Theme.of(context).primaryColor,
-                    radius: 28,
+                  child: Hero(
+                    tag: check == 1 ? userId : id,
                     child: CircleAvatar(
-                      child: Container(
-                        alignment: Alignment.center,
-                        width: 54,
-                        height: 54,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              image: check == 1
-                                  ? NetworkImage(imageUrl)
-                                  : AssetImage('asset/images/propic.png'),
-                              fit: BoxFit.cover),
+                      backgroundColor: Theme.of(context).primaryColor,
+                      radius: 28,
+                      child: CircleAvatar(
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: 54,
+                          height: 54,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                                image: check == 1
+                                    ? NetworkImage(imageUrl)
+                                    : AssetImage('asset/images/propic.png'),
+                                fit: BoxFit.cover),
+                          ),
                         ),
+                        radius: 25,
                       ),
-                      radius: 25,
                     ),
                   ),
                   onPressed: () => {

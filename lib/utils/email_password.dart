@@ -5,14 +5,13 @@ String emailId;
 String photoURL;
 String phone;
 String displayName;
+String id;
 
 Future<User> signUp(String email, String password) async {
   try {
     UserCredential result = (await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password));
     final User user = result.user;
-
-    // final User user = result.user;
     assert(user != null);
     assert(await user.getIdToken() != null);
     return user;
@@ -35,6 +34,7 @@ Future<User> signIn(String email, String password) async {
     photoURL = user.photoURL;
     phone = user.phoneNumber;
     displayName = user.displayName;
+    id = user.uid;
     print(user);
     return user;
   } catch (e) {

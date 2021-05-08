@@ -3,6 +3,7 @@ import 'package:intern/utils/google_sign_in.dart';
 import './home.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../utils/email_password.dart';
+import '../utils/database.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/login_page';
@@ -52,6 +53,7 @@ class _LoginPageState extends State<LoginPage> {
               setState(() {
                 _isLoading = false;
               }),
+              newUser(check == 1 ? userId : id),
               Navigator.of(context)
                   .pushReplacementNamed(HomeScreen.routeName, arguments: check)
             }
@@ -259,6 +261,10 @@ class _LoginPageState extends State<LoginPage> {
                                                             check = 1,
                                                             if (value != null)
                                                               {
+                                                                newUser(
+                                                                    check == 1
+                                                                        ? userId
+                                                                        : id),
                                                                 Navigator.of(
                                                                         context)
                                                                     .pushReplacementNamed(
