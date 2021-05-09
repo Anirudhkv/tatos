@@ -43,7 +43,7 @@ class _CheckoutState extends State<Checkout> {
               if (value == 'Success')
                 {
                   setState(() {
-                    _isLoading = true;
+                    _isLoading = false;
                   }),
                   showDialog(
                     context: context,
@@ -53,6 +53,17 @@ class _CheckoutState extends State<Checkout> {
                         Icons.done_sharp,
                         Theme.of(context).dialogBackgroundColor),
                   ),
+                }
+              else
+                {
+                  setState(() {
+                    _isLoading = false;
+                  }),
+                  showDialog(
+                    context: context,
+                    builder: (ctx) => SuccessDialog("Failed",
+                        "Profile updation failed", Icons.error, Colors.red),
+                  )
                 }
             });
   }

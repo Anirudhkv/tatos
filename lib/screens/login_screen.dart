@@ -6,6 +6,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import '../utils/email_password.dart';
 import '../utils/database.dart';
 import '../widgets/spinner.dart';
+import '../widgets/customdiaglog.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/login_page';
@@ -60,7 +61,16 @@ class _LoginPageState extends State<LoginPage> {
                   .pushReplacementNamed(HomeScreen.routeName, arguments: check)
             }
           else
-            {print('error found')}
+            {
+              setState(() {
+                _isLoading = false;
+              }),
+              showDialog(
+                context: context,
+                builder: (ctx) => SuccessDialog(
+                    "Failed", "Failed in logging in", Icons.error, Colors.red),
+              )
+            }
         });
   }
 

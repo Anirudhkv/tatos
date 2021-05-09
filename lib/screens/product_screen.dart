@@ -194,6 +194,21 @@ class _ProductScreenState extends State<ProductScreen> {
                                                                 .dialogBackgroundColor),
                                                       ),
                                                     }
+                                                  else
+                                                    {
+                                                      setState(() {
+                                                        _isLoading = false;
+                                                      }),
+                                                      showDialog(
+                                                        context: context,
+                                                        builder: (ctx) =>
+                                                            SuccessDialog(
+                                                                "Failed",
+                                                                "Failed in placing order",
+                                                                Icons.error,
+                                                                Colors.red),
+                                                      )
+                                                    }
                                                 });
                                       },
                                       child: Container(

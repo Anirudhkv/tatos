@@ -53,30 +53,33 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       _obscureText = true;
       _isLoading = true;
     });
-    signUp(_authData['email'], _authData['password'])
-        .then((value) => {
-              if (value != null)
-                {
-                  setState(() {
-                    _isLoading = false;
-                  }),
-                  showDialog(
-                    context: context,
-                    builder: (ctx) => SuccessDialog(
-                        "Account Created",
-                        "Account have been created successfully",
-                        Icons.done_sharp,
-                        Theme.of(context).dialogBackgroundColor),
-                  )
-                }
-            })
-        .catchError(
-          (e) => showDialog(
-            context: context,
-            builder: (ctx) => SuccessDialog("Failed",
-                "Failed in creating account", Icons.error, Colors.red),
-          ),
-        );
+    signUp(_authData['email'], _authData['password']).then((value) => {
+          if (value != null)
+            {
+              setState(() {
+                _isLoading = false;
+              }),
+              showDialog(
+                context: context,
+                builder: (ctx) => SuccessDialog(
+                    "Account Created",
+                    "Account have been created successfully",
+                    Icons.done_sharp,
+                    Theme.of(context).dialogBackgroundColor),
+              )
+            }
+          else
+            {
+              setState(() {
+                _isLoading = false;
+              }),
+              showDialog(
+                context: context,
+                builder: (ctx) => SuccessDialog("Failed",
+                    "Account creation failed", Icons.error, Colors.red),
+              )
+            }
+        });
   }
 
   @override
