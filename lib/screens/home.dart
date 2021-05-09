@@ -28,8 +28,9 @@ class HomeScreen extends StatelessWidget {
               tabs: [
                 Tab(text: "New"),
                 Tab(
-                  text: "Popular",
-                ),
+                  text: "Popular"),
+                  
+               
               ],
             ),
             toolbarHeight: 110,
@@ -38,14 +39,15 @@ class HomeScreen extends StatelessWidget {
                   child: Hero(
                     tag: check == 1 ? userId : id,
                     child: CircleAvatar(
-                      backgroundColor: Theme.of(context).primaryColor,
-                      radius: 28,
+                      backgroundColor: Theme.of(context).accentColor,
+                      radius: 26,
                       child: CircleAvatar(
                         child: Container(
                           alignment: Alignment.center,
                           width: 54,
                           height: 54,
                           decoration: BoxDecoration(
+
                             shape: BoxShape.circle,
                             image: DecorationImage(
                                 image: check == 1
@@ -78,6 +80,7 @@ class HomeScreen extends StatelessWidget {
                   },
                   tooltip:
                       MaterialLocalizations.of(context).openAppDrawerTooltip,
+                      color:Theme.of(context).accentColor,
                 );
               },
             ),
@@ -115,15 +118,18 @@ class NewFurnitures extends StatelessWidget {
             padding: const EdgeInsets.only(right: 20),
             child: TextField(
               decoration: InputDecoration(
+               
                   prefixIcon: IconButton(
-                    icon: Icon(Icons.search),
+                    icon: Icon(Icons.search,color: Theme.of(context).accentColor,),
                     onPressed: () => {},
                   ),
                   suffixIcon: IconButton(
-                    icon: Icon(Icons.mic),
+                    icon: Icon(Icons.mic_none_outlined,color: Theme.of(context).accentColor,),
                     onPressed: () => {},
                   ),
                   hintText: 'Search for products.',
+                  hintStyle: TextStyle(color: Theme.of(context).accentColor),
+                  
                   border: OutlineInputBorder(
                       borderSide:
                           BorderSide(color: Theme.of(context).accentColor),

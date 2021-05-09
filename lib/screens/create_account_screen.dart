@@ -7,6 +7,7 @@ import '../utils/email_password.dart';
 import '../utils/database.dart';
 
 class CreateAccountScreen extends StatefulWidget {
+  static const routeName="/create";
   @override
   _CreateAccountScreenState createState() => _CreateAccountScreenState();
 }
@@ -230,7 +231,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                         style: ButtonStyle(
                                             backgroundColor:
                                                 MaterialStateProperty.all<
-                                                    Color>(Colors.green),
+                                                    Color>(Color.fromRGBO(106, 147, 71, 1)),
                                             elevation: MaterialStateProperty
                                                 .all<double>(5)),
                                         onPressed: _next,
@@ -280,7 +281,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                     style: ButtonStyle(
                                         backgroundColor:
                                             MaterialStateProperty.all<Color>(
-                                                Colors.deepOrange),
+                                                Color.fromRGBO(225,160,103,1)),
                                         elevation:
                                             MaterialStateProperty.all<double>(
                                                 5)),

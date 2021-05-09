@@ -14,7 +14,7 @@ class AppBarScreen extends StatelessWidget {
               Container(
                 width: 20,
                 decoration: BoxDecoration(
-                  color: Colors.brown,
+                 color:Theme.of(context).accentColor,
                 ),
               ),
             ],
@@ -23,7 +23,7 @@ class AppBarScreen extends StatelessWidget {
         SizedBox(height: 2.5),
         Container(
           decoration: BoxDecoration(
-            color: Colors.brown,
+            color:Theme.of(context).accentColor,
           ),
           height: 3,
         ),
@@ -36,7 +36,7 @@ class AppBarScreen extends StatelessWidget {
               Container(
                 width: 20,
                 decoration: BoxDecoration(
-                  color: Colors.brown,
+                  color:Theme.of(context).accentColor,
                 ),
               ),
               SizedBox(width: 10),

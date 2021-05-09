@@ -38,7 +38,7 @@ class Item extends StatelessWidget {
                     ),
                   ],
                   // border: Border.all(color: Colors.white, width: 0),
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context).accentColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 alignment: Alignment.center),
@@ -47,7 +47,7 @@ class Item extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.green,
+                  color: Color.fromRGBO(106, 147, 71, 1),
                 ))
           ]),
         ),

@@ -17,7 +17,7 @@ class CartSymbol extends StatelessWidget {
             width: 55,
             decoration: BoxDecoration(
               // border: Border.all(color: Colors.white, width: 0),
-              color: Colors.green,
+              color: Color.fromRGBO(106, 147, 71, 1),
               borderRadius: BorderRadius.circular(10),
             ),
             alignment: Alignment.center),

@@ -20,272 +20,274 @@ class _RoughState extends State<Rough> {
  
 
     
-    return Stack(
-      children: [
-        Stack(
-                  children:[
+    return SingleChildScrollView(
+          child: Stack(
+        children: [
+          Stack(
+                    children:[
 Container(
-            
-              child: Image.asset("asset/images/home_open.png",
-               width: MediaQuery.of(context).size.width,
-                 height: MediaQuery.of(context).size.height,
-             fit: BoxFit.cover,
-                          ),
-                        
-                      ),
-                  Positioned(
-                    top:55,
-                    left:15,
+              
+                child: Image.asset("asset/images/home_open.png",
+                 width: MediaQuery.of(context).size.width,
+                   height: MediaQuery.of(context).size.height,
+               fit: BoxFit.cover,
+                            ),
+                          
+                        ),
+                    Positioned(
+                      top:55,
+                      left:15,
 
-                    child:Icon(Icons.arrow_back_outlined)
+                      child:Icon(Icons.arrow_back_outlined)
 
-                 
+                   
+                      
                     
-                  
+                      ),
+                    
+                    
+                    
+                    
+              
+                    Positioned(
+                      top:55,
+                      right:15,
+
+                    child: Icon(Icons.favorite_border),
+                    
+                    
+                    
+                    
                     ),
-                  
-                  
-                  
-                  
-            
-                  Positioned(
-                    top:55,
-                    right:15,
-
-                  child: Icon(Icons.favorite_border),
-                  
-                  
-                  
-                  
-                  ),
 
 
-                  ]
-        ),
-        
-      Positioned(
+                    ]
+          ),
+          
+        Positioned(
  
 
   top:400,
   child: Card(
-    elevation: 8.0,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(
+      elevation: 8.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
 topLeft:Radius.circular(16),
 
 topRight: Radius.circular(25)
 
+        ),
       ),
-    ),
-    child: Container(
-     height: MediaQuery.of(context).size.height*.7,
-     width: MediaQuery.of(context).size.width,
-      child:Column(children: [
+      child: Container(
+       height: MediaQuery.of(context).size.height*.7,
+       width: MediaQuery.of(context).size.width,
+        child:Column(children: [
   Padding(
-                            padding: const EdgeInsets.all(18.0),
-                            child: Row(
-                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children:
-                              [
-                                Text("Chair",style: TextStyle(
-                                 fontSize: 20,
-                                 fontWeight: FontWeight.bold
-           
-           
-                                ),),
-                                 Text("\$200",style: TextStyle(
-                                 fontSize: 20,
-                                 fontWeight: FontWeight.bold
-                                 
-           
-                                ),
-                                ),
-           
-           
-                              ]
-                    ),
-                          ),
-           Container(
-             margin: EdgeInsets.only(top:30,left:16,right:16),
-            decoration: BoxDecoration( boxShadow: [
-                           BoxShadow(
-                             color: Colors.grey.withOpacity(.2),
-                             spreadRadius: 2,
-                             blurRadius: 5,
+                              padding: const EdgeInsets.all(18.0),
+                              child: Row(
+                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children:
+                                [
+                                  Text("Chair",style: TextStyle(
+                                   fontSize: 20,
+                                   fontWeight: FontWeight.bold
+             
+             
+                                  ),),
+                                   Text("\$200",style: TextStyle(
+                                   fontSize: 20,
+                                   fontWeight: FontWeight.bold
+                                   
+             
+                                  ),
+                                  ),
+             
+             
+                                ]
+                      ),
+                            ),
+             Container(
+               margin: EdgeInsets.only(top:30,left:16,right:16),
+              decoration: BoxDecoration( boxShadow: [
+                             BoxShadow(
+                               color: Colors.grey.withOpacity(.2),
+                               spreadRadius: 2,
+                               blurRadius: 5,
+                             ),
+                            
+                           ],
+                           color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
                            ),
-                          
-                         ],
-                         color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(8)),
-                         ),
-             
-             padding: const EdgeInsets.only(top:26.0,left: 16,right: 16),
-             child:   Row(
-             
                
-             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-               children:[
-             
-                 Container(
-             
-             child: 
-             
-             Column(
-            
-               children: [
-             
-             Image.asset("asset/images/group.png"),
-             
-             Padding(
-               padding: const EdgeInsets.all(8.0),
-               child: Text("24*19*18"),
-             )
-             
-             
-             
-             ],)
-             
-                 ),
+               padding: const EdgeInsets.only(top:26.0,left: 16,right: 16),
+               child:   Row(
+               
+                 
+               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                 children:[
+               
                    Container(
-             
-             child: 
-             
-             Column(
-            
-               children: [
-             
-             Image.asset("asset/images/palm.png"),
-             
-             Padding(
-               padding: const EdgeInsets.all(8.0),
-               child: Text("Palm"),
-             )
-             
-             
-             
-             ],)
-             
-                 ),
-                   Container(
-             
-             child: 
-             
-             Column(
-            
-               children: [
-             
-             Image.asset("asset/images/flag.png"),
-             
-             Padding(
-               padding: const EdgeInsets.all(8.0),
-               child: Text("Indonesia"),
-             )
-             
-             
-             
-             ],)
-             
-                 ),
-                   Container(
-             
-             child: 
-             
-             Column(
-            
-               children: [
-             
-             Image.asset("asset/images/badge.png"),
-             
-             Padding(
-               padding: const EdgeInsets.all(8.0),
-               child: Text("5 years"),
-             )
-             
-             
-             
-             ],)
-             
-                 )
-             
-               ]
-             
-             
-             
+               
+               child: 
+               
+               Column(
+              
+                 children: [
+               
+               Image.asset("asset/images/group.png"),
+               
+               Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: Text("24*19*18"),
+               )
+               
+               
+               
+               ],)
+               
+                   ),
+                     Container(
+               
+               child: 
+               
+               Column(
+              
+                 children: [
+               
+               Image.asset("asset/images/palm.png"),
+               
+               Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: Text("Palm"),
+               )
+               
+               
+               
+               ],)
+               
+                   ),
+                     Container(
+               
+               child: 
+               
+               Column(
+              
+                 children: [
+               
+               Image.asset("asset/images/flag.png"),
+               
+               Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: Text("Indonesia"),
+               )
+               
+               
+               
+               ],)
+               
+                   ),
+                     Container(
+               
+               child: 
+               
+               Column(
+              
+                 children: [
+               
+               Image.asset("asset/images/badge.png"),
+               
+               Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: Text("5 years"),
+               )
+               
+               
+               
+               ],)
+               
+                   )
+               
+                 ]
+               
+               
+               
+               ),
              ),
-           ),
-           Container(
-             padding: EdgeInsets.only(top:20,left: 35,right: 25),
+             Container(
+               padding: EdgeInsets.only(top:20,left: 35,right: 25),
+               
+               child: Text("An armchair has armrests fixed to the seat a recliner is upholstered and under its seat\n is a mechanism that \nallows one to lower the chair's back ",
              
-             child: Text("An armchair has armrests fixed to the seat a recliner is upholstered and under its seat\n is a mechanism that \nallows one to lower the chair's back ",
-           
-             style: TextStyle(fontSize: 16),
-             
-             )),
-           Padding(
-                        padding: EdgeInsets.only(top:40,left: 35,right: 25,bottom: 10),
-                             child: Container(
-                               height: 55,
-                              
-                               child: ElevatedButton(
-                                 style: ElevatedButton.styleFrom(
-                                   primary:Colors.green,
-                                 ),
-                                 
+               style: TextStyle(fontSize: 16),
+               
+               )),
+             Padding(
+                          padding: EdgeInsets.only(top:40,left: 35,right: 25,bottom: 10),
+                               child: Container(
+                                 height: 55,
+                                
+                                 child: ElevatedButton(
+                                   style: ElevatedButton.styleFrom(
+                                     primary:Color.fromRGBO(106, 147, 71, 1),
+                                   ),
+                                   
 onPressed: () {
   
    setState(() {
-                  istapped = 'Button tapped';
-                });
+                    istapped = 'Button tapped';
+                  });
   Navigator.of(context).pop();
 }, 
-                child: Container(
-                  width: double.infinity,
+                  child: Container(
+                    width: double.infinity,
 
+                      
                     
+                 child: Row(
+                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                   children: [
+                     Padding(
+                       padding: const EdgeInsets.only(left:80.0),
+                       child: Text(' Add to Cart ',
+                       style: TextStyle(
+                         fontSize:20,
+                         fontWeight: FontWeight.bold,
+                         color: Colors.white,
+                       
+                       ),
+                       
+                       ),
+                     ),
+                     Icon(Icons.shopping_cart_outlined,color: Colors.white,),
+
+
+                   ],
+                 )), 
+                 
                   
-               child: Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                 children: [
-                   Padding(
-                     padding: const EdgeInsets.only(left:80.0),
-                     child: Text(' Add to Cart ',
-                     style: TextStyle(
-                       fontSize:20,
-                       fontWeight: FontWeight.bold,
-                       color: Colors.white,
-                     
-                     ),
-                     
-                     ),
-                   ),
-                   Icon(Icons.shopping_cart_outlined,color: Colors.white,),
 
-
-                 ],
-               )), 
-               
-                
-
-                               )
+                                 )
+                               ),
                              ),
-                           ),
 
 
 
 
-      ],)
-      
-          
-     
+        ],)
+        
+            
+       
+        ),
       ),
-    ),
   ),
 
 
 
 
-      ],
-      
+        ],
+        
+      ),
     );
   }
 }

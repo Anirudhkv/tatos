@@ -57,11 +57,21 @@ class UserScreen extends StatelessWidget {
                   children: <Widget>[
                     Hero(
                       tag: check == 1 ? userId : id,
-                      child: CircleAvatar(
-                        radius: 80,
-                        backgroundImage: check == 1
-                            ? NetworkImage(imageUrl)
-                            : AssetImage('asset/images/propic.png'),
+                      child: Container(
+                         decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(.5),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                )
+              ]
+              ),
+                        child: CircleAvatar(
+                          radius: 80,
+                          backgroundImage: check == 1
+                              ? NetworkImage(imageUrl)
+                              : AssetImage('asset/images/propic.png'),
+                        ),
                       ),
                     ),
                     check == 1
@@ -69,7 +79,7 @@ class UserScreen extends StatelessWidget {
                             ? Text(
                                 snapshot.data['name'],
                                 style: TextStyle(
-                                  fontSize: 25,
+                                  fontSize: 24,
                                 ),
                               )
                             : Text(
@@ -82,7 +92,7 @@ class UserScreen extends StatelessWidget {
                             ? Text(
                                 snapshot.data['name'],
                                 style: TextStyle(
-                                  fontSize: 25,
+                                  fontSize: 24,
                                 ),
                               )
                             : Text(
@@ -91,12 +101,15 @@ class UserScreen extends StatelessWidget {
                                   fontSize: 25,
                                 ),
                               )),
-                    Text(
-                      check == 1 ? '$email' : emailId,
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.red[400],
-                        letterSpacing: 2.5,
+                    Padding(
+                      padding: const EdgeInsets.only(top:8.0),
+                      child: Text(
+                        check == 1 ? '$email' : emailId,
+                        style: TextStyle(
+                          fontSize: 18,
+                          color:Theme.of(context).accentColor,
+                          letterSpacing: 2,
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -106,35 +119,39 @@ class UserScreen extends StatelessWidget {
                         color: Colors.teal[100],
                       ),
                     ),
-                    Card(
-                        color: Colors.white,
-                        margin: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 25.0),
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.phone,
-                            color: Colors.teal[900],
-                          ),
-                          title: check == 1
-                              ? (snapshot.data['phone'] != null
-                                  ? Text(
-                                      snapshot.data['phone'],
-                                      style: TextStyle(fontSize: 20.0),
-                                    )
-                                  : Text(
-                                      'No number added',
-                                      style: TextStyle(fontSize: 20.0),
-                                    ))
-                              : (snapshot.data['phone'] != null
-                                  ? Text(
-                                      snapshot.data['phone'],
-                                      style: TextStyle(fontSize: 20.0),
-                                    )
-                                  : Text(
-                                      'No number added',
-                                      style: TextStyle(fontSize: 20.0),
-                                    )),
-                        )),
+                    Padding(
+                      padding: const EdgeInsets.only(top:10.0),
+                      child: Card(
+                      
+                          color: Colors.white,
+                          margin: EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 25.0),
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.phone,
+                              color: Colors.teal[900],
+                            ),
+                            title: check == 1
+                                ? (snapshot.data['phone'] != null
+                                    ? Text(
+                                        snapshot.data['phone'],
+                                        style: TextStyle(fontSize: 20.0),
+                                      )
+                                    : Text(
+                                        'No number added',
+                                        style: TextStyle(fontSize: 20.0),
+                                      ))
+                                : (snapshot.data['phone'] != null
+                                    ? Text(
+                                        snapshot.data['phone'],
+                                        style: TextStyle(fontSize: 20.0),
+                                      )
+                                    : Text(
+                                        'No number added',
+                                        style: TextStyle(fontSize: 20.0),
+                                      )),
+                          )),
+                    ),
                     Card(
                       color: Colors.white,
                       margin: EdgeInsets.symmetric(

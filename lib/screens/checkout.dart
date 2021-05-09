@@ -123,6 +123,12 @@ class _CheckoutState extends State<Checkout> {
                     child: TextFormField(
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Theme.of(context).accentColor),
+                ),
+                  enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Theme.of(context).accentColor),
+                ),
                             hintText: 'Full name',
                             border: OutlineInputBorder(
                                 borderSide:
@@ -146,6 +152,12 @@ class _CheckoutState extends State<Checkout> {
                     child: TextFormField(
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Theme.of(context).accentColor),
+                ),
+                  enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Theme.of(context).accentColor),
+                ),
                             hintText: 'Phone Number',
                             border: OutlineInputBorder(
                                 borderSide:
@@ -169,6 +181,12 @@ class _CheckoutState extends State<Checkout> {
                     child: TextFormField(
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
+                       focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Theme.of(context).accentColor),
+                ),
+                  enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Theme.of(context).accentColor),
+                ),
                             hintText: 'Street Address',
                             border: OutlineInputBorder(
                                 borderSide:
@@ -192,6 +210,12 @@ class _CheckoutState extends State<Checkout> {
                     child: TextFormField(
                       textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Theme.of(context).accentColor),
+                ),
+                  enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Theme.of(context).accentColor),
+                ),
                           hintText: 'State/City',
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.brown[300]),
@@ -216,6 +240,12 @@ class _CheckoutState extends State<Checkout> {
                         keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Theme.of(context).accentColor),
+                ),
+                  enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Theme.of(context).accentColor),
+                ),
                             hintText: 'Postal Code',
                             border: OutlineInputBorder(
                                 borderSide:
@@ -259,7 +289,7 @@ class _CheckoutState extends State<Checkout> {
                       child: ElevatedButton(
                           style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.green),
+                                  Color.fromRGBO(106, 147, 71, 1)),
                               elevation: MaterialStateProperty.all<double>(5)),
                           onPressed: () => _next(check),
                           child: Container(

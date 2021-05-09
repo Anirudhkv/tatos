@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Lato',
         primaryColor: Colors.brown,
         
-        accentColor: Colors.orange,
+        accentColor: Color.fromRGBO(225,160,103,1),
       ),
       debugShowCheckedModeBanner: false,
       title: 'Elegant Furnitures',
@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
         Checkout.routeName: (context) => Checkout(),
         UserScreen.routeName: (context) => UserScreen(),
         Rough.routeName: (context)=>Rough(),
+        CreateAccountScreen.routeName:(context)=>CreateAccountScreen(),
       },
     );
   }
