@@ -30,12 +30,18 @@ class _ProductScreenState extends State<ProductScreen> {
     return Scaffold(
         backgroundColor: Color.fromRGBO(232, 219, 210, 1),
         body: Stack(
+          
           children: [
+            
+            
             Container(
               height: MediaQuery.of(context).size.height * 1,
               width: MediaQuery.of(context).size.width * 1,
               child: Column(
                 children: [
+                    
+                    
+
                   Hero(
                     tag: productData['imageUrl'],
                     child: Container(
@@ -82,7 +88,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                     ]),
                               ),
                               Container(
-                                margin: EdgeInsets.only(left: 16, right: 16),
+                                margin: EdgeInsets.only(left: 16, right: 16,top:20),
                                 decoration: BoxDecoration(
                                   boxShadow: [
                                     BoxShadow(
@@ -112,11 +118,14 @@ class _ProductScreenState extends State<ProductScreen> {
                                         ],
                                       )),
                                       Container(
+                                    
                                           child: Column(
                                         children: [
                                           Image.asset("asset/images/palm.png"),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          Container(
+                                            margin: EdgeInsets.only(bottom: 9),
+                                  
+                                           
                                             child: Text("Palm"),
                                           )
                                         ],
@@ -147,7 +156,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                   height:
                                       MediaQuery.of(context).size.height * 0.17,
                                   padding: EdgeInsets.only(
-                                      top: 20, left: 35, right: 25),
+                                      top: 45, left: 35, right: 25),
                                   child: Text(
                                     productData['detail'],
                                     overflow: TextOverflow.clip,
