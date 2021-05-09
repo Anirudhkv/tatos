@@ -6,6 +6,7 @@ import 'login_screen.dart';
 import '../utils/email_password.dart';
 import '../utils/database.dart';
 import '../widgets/customdiaglog.dart';
+import '../widgets/spinner.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   static const routeName = "/create";
@@ -56,6 +57,9 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         .then((value) => {
               if (value != null)
                 {
+                  setState(() {
+                    _isLoading = false;
+                  }),
                   showDialog(
                     context: context,
                     builder: (ctx) => SuccessDialog(
@@ -73,10 +77,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 "Failed in creating account", Icons.error, Colors.red),
           ),
         );
-
-    setState(() {
-      _isLoading = false;
-    });
   }
 
   @override
@@ -86,105 +86,72 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       child: Container(
           height: MediaQuery.of(context).size.height * 1,
           width: double.infinity,
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            SizedBox(height: MediaQuery.of(context).size.height * 0.13),
-            Column(
-              children: [
-                Text(
-                  "Create an account",
-                  style: TextStyle(
-                      color: Colors.brown,
-                      fontSize: 27,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                Text('Signing up or login to see \n     our top picks for you.',
+          child: Stack(children: [
+            Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+              SizedBox(height: MediaQuery.of(context).size.height * 0.13),
+              Column(
+                children: [
+                  Text(
+                    "Create an account",
                     style: TextStyle(
                         color: Colors.brown,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w300)),
-              ],
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-            Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 30),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TextFormField(
-                            textInputAction: TextInputAction.next,
-                            decoration: InputDecoration(
-                                hintText: 'Email Address',
-                                border: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.brown[300]),
-                                    borderRadius: BorderRadius.circular(7))),
-                            validator: (value) {
-                              if (value.isEmpty || !value.contains('@')) {
-                                return "Invalid Email";
-                              }
-                              return null;
-                            },
-                            onFieldSubmitted: (value) {
-                              FocusScope.of(context)
-                                  .requestFocus(_passwordFocus);
-                            },
-                            onSaved: (value) {
-                              _authData['email'] = value;
-                            },
-                          ),
-                          SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.015),
-                          Column(
-                            children: [
-                              TextFormField(
-                                controller: _passwordController,
-                                textInputAction: TextInputAction.next,
-                                focusNode: _passwordFocus,
-                                obscureText: _obscureText,
-                                decoration: InputDecoration(
-                                  hintText: 'Password',
+                        fontSize: 27,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                  Text(
+                      'Signing up or login to see \n     our top picks for you.',
+                      style: TextStyle(
+                          color: Colors.brown,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w300)),
+                ],
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+              Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 30),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextFormField(
+                              textInputAction: TextInputAction.next,
+                              decoration: InputDecoration(
+                                  hintText: 'Email Address',
                                   border: OutlineInputBorder(
                                       borderSide:
                                           BorderSide(color: Colors.brown[300]),
-                                      borderRadius: BorderRadius.circular(7)),
-                                  suffixIcon: IconButton(
-                                    icon: Icon(_obscureText
-                                        ? Icons.lock
-                                        : Icons.lock_open),
-                                    onPressed: _toggle,
-                                  ),
-                                ),
-                                validator: (value) {
-                                  if (value.isEmpty || value.length < 5) {
-                                    return "Password is too short (Min 5)";
-                                  }
-                                  return null;
-                                },
-                                onFieldSubmitted: (value) {
-                                  FocusScope.of(context)
-                                      .requestFocus(_confirmpasswordFocus);
-                                },
-                                onSaved: (value) {
-                                  _authData['password'] = value;
-                                },
-                              ),
-                              SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.015),
-                              TextFormField(
-                                  textInputAction: TextInputAction.go,
-                                  focusNode: _confirmpasswordFocus,
+                                      borderRadius: BorderRadius.circular(7))),
+                              validator: (value) {
+                                if (value.isEmpty || !value.contains('@')) {
+                                  return "Invalid Email";
+                                }
+                                return null;
+                              },
+                              onFieldSubmitted: (value) {
+                                FocusScope.of(context)
+                                    .requestFocus(_passwordFocus);
+                              },
+                              onSaved: (value) {
+                                _authData['email'] = value;
+                              },
+                            ),
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.015),
+                            Column(
+                              children: [
+                                TextFormField(
+                                  controller: _passwordController,
+                                  textInputAction: TextInputAction.next,
+                                  focusNode: _passwordFocus,
                                   obscureText: _obscureText,
                                   decoration: InputDecoration(
-                                    hintText: 'Confirm password',
+                                    hintText: 'Password',
                                     border: OutlineInputBorder(
                                         borderSide: BorderSide(
                                             color: Colors.brown[300]),
@@ -197,161 +164,205 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                     ),
                                   ),
                                   validator: (value) {
-                                    if (value.isEmpty) {
-                                      return "Field is empty";
-                                    }
-                                    if (_passwordController.text != value) {
-                                      return "Passwords do not Match";
+                                    if (value.isEmpty || value.length < 5) {
+                                      return "Password is too short (Min 5)";
                                     }
                                     return null;
                                   },
                                   onFieldSubmitted: (value) {
                                     FocusScope.of(context)
-                                        .requestFocus(_loginFocus);
-                                    _next();
-                                  }),
-                              SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.03),
-                              Container(
-                                height: 50,
-                                child: (_isLoading)
-                                    ? CircularProgressIndicator()
-                                    : ElevatedButton(
-                                        style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty
-                                                    .all<Color>(Color.fromRGBO(
-                                                        106, 147, 71, 1)),
-                                            elevation: MaterialStateProperty
-                                                .all<double>(5)),
-                                        onPressed: _next,
-                                        child: Container(
-                                          width: double.infinity,
-                                          child: Text(
-                                            'Get Started',
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                color: Colors.white),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        )),
-                              ),
-                              SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.03),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 60),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Forgot Password?',
-                                      style: TextStyle(
-                                          fontSize: 17, color: Colors.brown),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    InkWell(
-                                      onTap: () => Navigator.of(context)
-                                          .pushReplacementNamed(
-                                              LoginPage.routeName),
-                                      child: Text(
-                                        '  Reset here',
-                                        style: TextStyle(
-                                            fontSize: 17, color: Colors.blue),
-                                      ),
-                                    ),
-                                  ],
+                                        .requestFocus(_confirmpasswordFocus);
+                                  },
+                                  onSaved: (value) {
+                                    _authData['password'] = value;
+                                  },
                                 ),
-                              ),
-                              SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.04),
-                              Container(
-                                height: 50,
-                                child: ElevatedButton(
-                                    style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                Color.fromRGBO(
-                                                    225, 160, 103, 1)),
-                                        elevation:
-                                            MaterialStateProperty.all<double>(
-                                                5)),
-                                    onPressed: () => {
-                                          signInWithGoogle().then((value) => {
-                                                check = 1,
-                                                if (value != null)
-                                                  {
-                                                    newUser(check == 1
-                                                        ? userId
-                                                        : id),
-                                                    Navigator.of(context)
-                                                        .pushReplacementNamed(
-                                                            HomeScreen
-                                                                .routeName,
-                                                            arguments: check)
-                                                  }
-                                                else
-                                                  {print("error found")}
-                                              })
-                                        },
-                                    child: Container(
-                                      width: double.infinity,
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            MdiIcons.google,
-                                            size: 30,
-                                          ),
-                                          SizedBox(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.1),
-                                          Text(
-                                            'Continue with Google',
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                color: Colors.white),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ],
+                                SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.015),
+                                TextFormField(
+                                    textInputAction: TextInputAction.go,
+                                    focusNode: _confirmpasswordFocus,
+                                    obscureText: _obscureText,
+                                    decoration: InputDecoration(
+                                      hintText: 'Confirm password',
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.brown[300]),
+                                          borderRadius:
+                                              BorderRadius.circular(7)),
+                                      suffixIcon: IconButton(
+                                        icon: Icon(_obscureText
+                                            ? Icons.lock
+                                            : Icons.lock_open),
+                                        onPressed: _toggle,
                                       ),
-                                    )),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 80, top: 30),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Already an account ?',
-                                      style: TextStyle(
-                                          fontSize: 17, color: Colors.brown),
-                                      textAlign: TextAlign.center,
                                     ),
-                                    InkWell(
-                                      onTap: () => Navigator.of(context)
-                                          .pushReplacementNamed(
-                                              LoginPage.routeName,
-                                              arguments: check),
-                                      child: Text(
-                                        ' LogIn',
+                                    validator: (value) {
+                                      if (value.isEmpty) {
+                                        return "Field is empty";
+                                      }
+                                      if (_passwordController.text != value) {
+                                        return "Passwords do not Match";
+                                      }
+                                      return null;
+                                    },
+                                    onFieldSubmitted: (value) {
+                                      FocusScope.of(context)
+                                          .requestFocus(_loginFocus);
+                                      _next();
+                                    }),
+                                SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.03),
+                                Container(
+                                  height: 50,
+                                  child: ElevatedButton(
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  Color.fromRGBO(
+                                                      106, 147, 71, 1)),
+                                          elevation:
+                                              MaterialStateProperty.all<double>(
+                                                  5)),
+                                      onPressed: _next,
+                                      child: Container(
+                                        width: double.infinity,
+                                        child: Text(
+                                          'Get Started',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),
+                                ),
+                                SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.03),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 60),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        'Forgot Password?',
                                         style: TextStyle(
-                                            fontSize: 17, color: Colors.blue),
+                                            fontSize: 17, color: Colors.brown),
                                         textAlign: TextAlign.center,
                                       ),
-                                    ),
-                                  ],
+                                      InkWell(
+                                        onTap: () => Navigator.of(context)
+                                            .pushReplacementNamed(
+                                                LoginPage.routeName),
+                                        child: Text(
+                                          '  Reset here',
+                                          style: TextStyle(
+                                              fontSize: 17, color: Colors.blue),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ))
-                ],
+                                SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.04),
+                                Container(
+                                  height: 50,
+                                  child: ElevatedButton(
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  Color.fromRGBO(
+                                                      225, 160, 103, 1)),
+                                          elevation:
+                                              MaterialStateProperty.all<double>(
+                                                  5)),
+                                      onPressed: () => {
+                                            setState(() {
+                                              _isLoading = true;
+                                            }),
+                                            signInWithGoogle().then((value) => {
+                                                  check = 1,
+                                                  if (value != null)
+                                                    {
+                                                      setState(() {
+                                                        _isLoading = false;
+                                                      }),
+                                                      newUser(check == 1
+                                                          ? userId
+                                                          : id),
+                                                      Navigator.of(context)
+                                                          .pushReplacementNamed(
+                                                              HomeScreen
+                                                                  .routeName,
+                                                              arguments: check)
+                                                    }
+                                                  else
+                                                    {print("error found")}
+                                                })
+                                          },
+                                      child: Container(
+                                        width: double.infinity,
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              MdiIcons.google,
+                                              size: 30,
+                                            ),
+                                            SizedBox(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.1),
+                                            Text(
+                                              'Continue with Google',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.white),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ],
+                                        ),
+                                      )),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 80, top: 30),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        'Already an account ?',
+                                        style: TextStyle(
+                                            fontSize: 17, color: Colors.brown),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      InkWell(
+                                        onTap: () => Navigator.of(context)
+                                            .pushReplacementNamed(
+                                                LoginPage.routeName,
+                                                arguments: check),
+                                        child: Text(
+                                          ' LogIn',
+                                          style: TextStyle(
+                                              fontSize: 17, color: Colors.blue),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ))
+                  ],
+                ),
               ),
-            ),
+            ]),
+            _isLoading
+                ? Loader(isCustom: true, loadingTxt: "Creating account")
+                : Container()
           ])),
     ));
   }

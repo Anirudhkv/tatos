@@ -75,8 +75,11 @@ class MainDrawer extends StatelessWidget {
 
               showDialog(
                 context: context,
-                builder: (ctx) => SuccessDialog("Signed Out",
-                    "Sign Out successfull", MdiIcons.account, Colors.lightBlue),
+                builder: (ctx) => SuccessDialog(
+                    "Signed Out",
+                    "Sign Out successfull",
+                    MdiIcons.account,
+                    Theme.of(context).dialogBackgroundColor),
               );
             },
           ),

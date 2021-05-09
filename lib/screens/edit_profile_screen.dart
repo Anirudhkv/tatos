@@ -3,6 +3,7 @@ import 'package:intern/utils/google_sign_in.dart';
 import '../utils/database.dart';
 import '../utils/email_password.dart';
 import '../widgets/customdiaglog.dart';
+import '../widgets/spinner.dart';
 
 class Checkout extends StatefulWidget {
   static const routeName = "/checkout";
@@ -13,6 +14,7 @@ class Checkout extends StatefulWidget {
 
 class _CheckoutState extends State<Checkout> {
   bool isSwitched = false;
+  var _isLoading = false;
   final formKey = GlobalKey<FormState>();
   Map<String, String> _updateData = {
     'name': '',
@@ -27,6 +29,9 @@ class _CheckoutState extends State<Checkout> {
       return;
     }
     formKey.currentState.save();
+    setState(() {
+      _isLoading = true;
+    });
     addOrUpdateUser(
             check == 1 ? userId : id,
             _updateData['name'],
@@ -37,6 +42,9 @@ class _CheckoutState extends State<Checkout> {
         .then((value) => {
               if (value == 'Success')
                 {
+                  setState(() {
+                    _isLoading = true;
+                  }),
                   showDialog(
                     context: context,
                     builder: (ctx) => SuccessDialog(
@@ -52,9 +60,7 @@ class _CheckoutState extends State<Checkout> {
   @override
   Widget build(BuildContext context) {
     final check = ModalRoute.of(context).settings.arguments;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
+    final appBar = AppBar(
         backgroundColor: Colors.white,
         brightness: Brightness.dark,
         elevation: 0,
@@ -66,20 +72,16 @@ class _CheckoutState extends State<Checkout> {
           },
           iconSize: 20,
         ),
-        title: Container(
-            width: MediaQuery.of(context).size.width * 1.6,
-            child: Text(
-              "Edit Profile",
-              style:
-                  TextStyle(color: Colors.brown, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            )),
-      ),
+        title: Text('Edit Profile',
+            style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold)),
+        centerTitle: true);
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: appBar,
       body: SingleChildScrollView(
-        child: Container(
-          child: Column(children: [
+        child: Stack(children: [
+          Column(children: [
             SizedBox(
-              width: MediaQuery.of(context).size.width * .9,
               height: MediaQuery.of(context).size.height * .04,
             ),
             Container(
@@ -269,7 +271,6 @@ class _CheckoutState extends State<Checkout> {
                             onChanged: (value) {
                               setState(() {
                                 isSwitched = value;
-                                print(isSwitched);
                               });
                             },
                             activeTrackColor: Colors.lightGreenAccent,
@@ -310,7 +311,10 @@ class _CheckoutState extends State<Checkout> {
               ),
             ),
           ]),
-        ),
+          _isLoading
+              ? Loader(isCustom: true, loadingTxt: 'Updating Datas')
+              : Container()
+        ]),
       ),
     );
   }

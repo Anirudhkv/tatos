@@ -72,7 +72,8 @@ class SuccessDialog extends StatelessWidget {
                           Navigator.of(context)
                               .pushReplacementNamed(LoginPage.routeName);
                         }
-                        if (title == "Order Placed") {
+                        if (title == "Order Placed" ||
+                            title == "Profile Updated") {
                           Navigator.of(context).pop();
                         }
                       },
