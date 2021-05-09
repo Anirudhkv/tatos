@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intern/utils/google_sign_in.dart';
 import '../utils/database.dart';
 import '../utils/email_password.dart';
+import '../widgets/customdiaglog.dart';
 
 class Checkout extends StatefulWidget {
   static const routeName = "/checkout";
@@ -38,19 +39,12 @@ class _CheckoutState extends State<Checkout> {
                 {
                   showDialog(
                     context: context,
-                    builder: (ctx) => AlertDialog(
-                      title: Text("Success"),
-                      content: Text("Successfully Updated data"),
-                      actions: <Widget>[
-                        FlatButton(
-                          onPressed: () {
-                            Navigator.of(ctx).pop();
-                          },
-                          child: Text("okay"),
-                        ),
-                      ],
-                    ),
-                  )
+                    builder: (ctx) => SuccessDialog(
+                        "Profile Updated",
+                        "Profile have been updated successfully",
+                        Icons.done_sharp,
+                        Theme.of(context).dialogBackgroundColor),
+                  ),
                 }
             });
   }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intern/utils/google_sign_in.dart';
 import 'package:intern/utils/email_password.dart';
-import '../screens/login_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../widgets/customdiaglog.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class MainDrawer extends StatelessWidget {
   final check;
@@ -71,7 +72,12 @@ class MainDrawer extends StatelessWidget {
             title: Text("Sign Out"),
             onTap: () {
               check == 1 ? signOutGoogle() : signOut();
-              Navigator.of(context).pushNamed(LoginPage.routeName);
+
+              showDialog(
+                context: context,
+                builder: (ctx) => SuccessDialog("Signed Out",
+                    "Sign Out successfull", MdiIcons.account, Colors.lightBlue),
+              );
             },
           ),
         ],

@@ -5,6 +5,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'login_screen.dart';
 import '../utils/email_password.dart';
 import '../utils/database.dart';
+import '../widgets/customdiaglog.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   static const routeName = "/create";
@@ -52,38 +53,27 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       _isLoading = true;
     });
     signUp(_authData['email'], _authData['password'])
-        .then((value) => value != null
-            ? showDialog(
-                context: context,
-                builder: (ctx) => AlertDialog(
-                  title: Text("Success"),
-                  content: Text("You have successfully registered"),
-                  actions: <Widget>[
-                    FlatButton(
-                      onPressed: () {
-                        Navigator.of(ctx).pop();
-                      },
-                      child: Text("okay"),
-                    ),
-                  ],
-                ),
-              )
-            : showDialog(
-                context: context,
-                builder: (ctx) => AlertDialog(
-                  title: Text("Failed"),
-                  content: Text(
-                      "Failed in registering!!\nThis may due to duplicate accounts"),
-                  actions: <Widget>[
-                    FlatButton(
-                      onPressed: () {
-                        Navigator.of(ctx).pop();
-                      },
-                      child: Text("okay"),
-                    ),
-                  ],
-                ),
-              ));
+        .then((value) => {
+              if (value != null)
+                {
+                  showDialog(
+                    context: context,
+                    builder: (ctx) => SuccessDialog(
+                        "Account Created",
+                        "Account have been created successfully",
+                        Icons.done_sharp,
+                        Theme.of(context).dialogBackgroundColor),
+                  )
+                }
+            })
+        .catchError(
+          (e) => showDialog(
+            context: context,
+            builder: (ctx) => SuccessDialog("Failed",
+                "Failed in creating account", Icons.error, Colors.red),
+          ),
+        );
+
     setState(() {
       _isLoading = false;
     });

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import '../screens/login_screen.dart';
 
 class SuccessDialog extends StatelessWidget {
-  const SuccessDialog({
-    Key key,
-  }) : super(key: key);
+  final String title;
+  final String subtitle;
+  final IconData icon;
+  final Color color;
+  SuccessDialog(this.title, this.subtitle, this.icon, this.color);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class SuccessDialog extends StatelessWidget {
               ),
               margin: EdgeInsets.only(top: 50),
               decoration: BoxDecoration(
-                color: Theme.of(context).accentColor,
+                color: Colors.white,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(32),
                 boxShadow: [
@@ -40,11 +43,11 @@ class SuccessDialog extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text(
-                    "Success!",
+                    title,
                     style: TextStyle(
                         fontSize: 28.0,
                         fontWeight: FontWeight.w600,
-                        color: Colors.white),
+                        color: color),
                   ),
                   SizedBox(
                     height: 5,
@@ -55,9 +58,9 @@ class SuccessDialog extends StatelessWidget {
                   ),
                   SizedBox(height: 16.0),
                   Text(
-                    "Success created account \nYou can login now",
+                    subtitle,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16.0, color: Colors.white),
+                    style: TextStyle(fontSize: 16.0, color: Colors.black),
                   ),
                   SizedBox(height: 24.0),
                   InkWell(
@@ -65,6 +68,13 @@ class SuccessDialog extends StatelessWidget {
                       borderRadius: BorderRadius.circular(32),
                       onTap: () {
                         Navigator.of(context).pop();
+                        if (title == "Signed Out") {
+                          Navigator.of(context)
+                              .pushReplacementNamed(LoginPage.routeName);
+                        }
+                        if (title == "Order Placed") {
+                          Navigator.of(context).pop();
+                        }
                       },
                       child: Container(
                         padding: EdgeInsets.all(12),
@@ -73,7 +83,7 @@ class SuccessDialog extends StatelessWidget {
                           "OK",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: Theme.of(context).accentColor,
+                              color: color,
                               fontWeight: FontWeight.w700,
                               fontSize: 20),
                         ),
@@ -88,10 +98,10 @@ class SuccessDialog extends StatelessWidget {
               left: 16,
               right: 16,
               child: CircleAvatar(
-                backgroundColor: Colors.white,
+                backgroundColor: color,
                 child: Icon(
-                  Icons.check_sharp,
-                  color: Theme.of(context).accentColor,
+                  icon,
+                  color: Colors.white,
                   size: 50,
                 ),
                 radius: 50,

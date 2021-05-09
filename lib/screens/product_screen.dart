@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../utils/database.dart';
 import '../utils/google_sign_in.dart';
 import '../utils/email_password.dart';
+import '../widgets/customdiaglog.dart';
 
 class ScreenArguments {
   final DocumentSnapshot productDatas;
@@ -160,23 +161,14 @@ class ProductScreen extends StatelessWidget {
                                               {
                                                 showDialog(
                                                   context: context,
-                                                  builder: (ctx) => AlertDialog(
-                                                    title: Text("Success"),
-                                                    content: Text(
-                                                        "Successfully placed order"),
-                                                    actions: <Widget>[
-                                                      FlatButton(
-                                                        onPressed: () {
-                                                          Navigator.of(ctx)
-                                                              .pop();
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        },
-                                                        child: Text("okay"),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                  builder: (ctx) => SuccessDialog(
+                                                      "Order Placed",
+                                                      "Your order have been placed",
+                                                      Icons.done_sharp,
+                                                      Theme.of(context)
+                                                          .dialogBackgroundColor),
                                                 ),
+
                                                 //Navigator.of(context).pop(),
                                               }
                                           });

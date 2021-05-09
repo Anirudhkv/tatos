@@ -17,7 +17,7 @@ Future<User> signUp(String email, String password) async {
     return user;
   } catch (e) {
     HttpException(e);
-    return e;
+    return null;
   }
 }
 
