@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:intern/screens/home.dart';
+import 'package:intern/screens/home_screen.dart';
 import 'package:intern/utils/google_sign_in.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import './login.dart';
+import 'login_screen.dart';
 import '../utils/email_password.dart';
 import '../utils/database.dart';
 
 class CreateAccountScreen extends StatefulWidget {
-  static const routeName="/create";
+  static const routeName = "/create";
   @override
   _CreateAccountScreenState createState() => _CreateAccountScreenState();
 }
@@ -230,8 +230,9 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                     : ElevatedButton(
                                         style: ButtonStyle(
                                             backgroundColor:
-                                                MaterialStateProperty.all<
-                                                    Color>(Color.fromRGBO(106, 147, 71, 1)),
+                                                MaterialStateProperty
+                                                    .all<Color>(Color.fromRGBO(
+                                                        106, 147, 71, 1)),
                                             elevation: MaterialStateProperty
                                                 .all<double>(5)),
                                         onPressed: _next,
@@ -281,7 +282,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                     style: ButtonStyle(
                                         backgroundColor:
                                             MaterialStateProperty.all<Color>(
-                                                Color.fromRGBO(225,160,103,1)),
+                                                Color.fromRGBO(
+                                                    225, 160, 103, 1)),
                                         elevation:
                                             MaterialStateProperty.all<double>(
                                                 5)),
@@ -297,7 +299,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                                         .pushReplacementNamed(
                                                             HomeScreen
                                                                 .routeName,
-                                                                arguments: check)
+                                                            arguments: check)
                                                   }
                                                 else
                                                   {print("error found")}

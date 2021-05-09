@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../widgets/sliding_product.dart';
 import '../widgets/item.dart';
 import '../widgets/drawer.dart';
-import '../screens/user_screen.dart';
+import 'user_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home';
@@ -14,6 +14,11 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final check = ModalRoute.of(context).settings.arguments;
     final mediaQuery = MediaQuery.of(context).size;
+    var decorationImage = DecorationImage(
+        image: check == 1
+            ? NetworkImage(imageUrl)
+            : AssetImage('asset/images/propic.png'),
+        fit: BoxFit.cover);
     return DefaultTabController(
       length: 2,
       child: Container(
@@ -27,10 +32,7 @@ class HomeScreen extends StatelessWidget {
               labelColor: Theme.of(context).primaryColor,
               tabs: [
                 Tab(text: "New"),
-                Tab(
-                  text: "Popular"),
-                  
-               
+                Tab(text: "Popular"),
               ],
             ),
             toolbarHeight: 110,
@@ -47,13 +49,8 @@ class HomeScreen extends StatelessWidget {
                           width: 54,
                           height: 54,
                           decoration: BoxDecoration(
-
                             shape: BoxShape.circle,
-                            image: DecorationImage(
-                                image: check == 1
-                                    ? NetworkImage(imageUrl)
-                                    : AssetImage('asset/images/propic.png'),
-                                fit: BoxFit.cover),
+                            image: decorationImage,
                           ),
                         ),
                         radius: 25,
@@ -80,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                   },
                   tooltip:
                       MaterialLocalizations.of(context).openAppDrawerTooltip,
-                      color:Theme.of(context).accentColor,
+                  color: Theme.of(context).accentColor,
                 );
               },
             ),
@@ -93,8 +90,8 @@ class HomeScreen extends StatelessWidget {
             elevation: 0,
           ),
           body: TabBarView(children: [
-            SingleChildScrollView(child: NewFurnitures()),
-            SingleChildScrollView(child: NewFurnitures())
+            SingleChildScrollView(child: NewFurnitures(check)),
+            SingleChildScrollView(child: NewFurnitures(check))
           ]),
         ),
       ),
@@ -103,9 +100,8 @@ class HomeScreen extends StatelessWidget {
 }
 
 class NewFurnitures extends StatelessWidget {
-  const NewFurnitures({
-    Key key,
-  }) : super(key: key);
+  final int check;
+  NewFurnitures(this.check);
 
   @override
   Widget build(BuildContext context) {
@@ -118,18 +114,22 @@ class NewFurnitures extends StatelessWidget {
             padding: const EdgeInsets.only(right: 20),
             child: TextField(
               decoration: InputDecoration(
-               
                   prefixIcon: IconButton(
-                    icon: Icon(Icons.search,color: Theme.of(context).accentColor,),
+                    icon: Icon(
+                      Icons.search,
+                      color: Theme.of(context).accentColor,
+                    ),
                     onPressed: () => {},
                   ),
                   suffixIcon: IconButton(
-                    icon: Icon(Icons.mic_none_outlined,color: Theme.of(context).accentColor,),
+                    icon: Icon(
+                      Icons.mic_none_outlined,
+                      color: Theme.of(context).accentColor,
+                    ),
                     onPressed: () => {},
                   ),
                   hintText: 'Search for products.',
                   hintStyle: TextStyle(color: Theme.of(context).accentColor),
-                  
                   border: OutlineInputBorder(
                       borderSide:
                           BorderSide(color: Theme.of(context).accentColor),
@@ -161,7 +161,7 @@ class NewFurnitures extends StatelessWidget {
                       return Expanded(
                         child: ListView.builder(
                           itemBuilder: (ctx, index) =>
-                              SlidingProduct(snapshot.data.docs[index]),
+                              SlidingProduct(snapshot.data.docs[index], check),
                           itemCount: snapshot.data.docs.length,
                           scrollDirection: Axis.horizontal,
                         ),

@@ -95,8 +95,7 @@ class _CheckoutState extends State<Checkout> {
                   spreadRadius: 2,
                   blurRadius: 5,
                 )
-              ]
-              ),
+              ]),
               child: CircleAvatar(
                 radius: 60,
                 backgroundImage: check == 1
@@ -123,12 +122,14 @@ class _CheckoutState extends State<Checkout> {
                     child: TextFormField(
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor),
-                ),
-                  enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor),
-                ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).accentColor),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).accentColor),
+                            ),
                             hintText: 'Full name',
                             border: OutlineInputBorder(
                                 borderSide:
@@ -152,12 +153,14 @@ class _CheckoutState extends State<Checkout> {
                     child: TextFormField(
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor),
-                ),
-                  enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor),
-                ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).accentColor),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).accentColor),
+                            ),
                             hintText: 'Phone Number',
                             border: OutlineInputBorder(
                                 borderSide:
@@ -181,12 +184,14 @@ class _CheckoutState extends State<Checkout> {
                     child: TextFormField(
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                       focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor),
-                ),
-                  enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor),
-                ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).accentColor),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).accentColor),
+                            ),
                             hintText: 'Street Address',
                             border: OutlineInputBorder(
                                 borderSide:
@@ -210,12 +215,14 @@ class _CheckoutState extends State<Checkout> {
                     child: TextFormField(
                       textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor),
-                ),
-                  enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor),
-                ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Theme.of(context).accentColor),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Theme.of(context).accentColor),
+                          ),
                           hintText: 'State/City',
                           border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.brown[300]),
@@ -240,12 +247,14 @@ class _CheckoutState extends State<Checkout> {
                         keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor),
-                ),
-                  enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).accentColor),
-                ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).accentColor),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).accentColor),
+                            ),
                             hintText: 'Postal Code',
                             border: OutlineInputBorder(
                                 borderSide:

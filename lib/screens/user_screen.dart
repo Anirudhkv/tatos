@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../utils/google_sign_in.dart';
 import '../utils/email_password.dart';
-import '../screens/checkout.dart';
+import 'edit_profile_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserScreen extends StatelessWidget {
@@ -58,14 +58,14 @@ class UserScreen extends StatelessWidget {
                     Hero(
                       tag: check == 1 ? userId : id,
                       child: Container(
-                         decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(.5),
-                  spreadRadius: 2,
-                  blurRadius: 5,
-                )
-              ]
-              ),
+                        decoration:
+                            BoxDecoration(shape: BoxShape.circle, boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                          )
+                        ]),
                         child: CircleAvatar(
                           radius: 80,
                           backgroundImage: check == 1
@@ -102,12 +102,12 @@ class UserScreen extends StatelessWidget {
                                 ),
                               )),
                     Padding(
-                      padding: const EdgeInsets.only(top:8.0),
+                      padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
                         check == 1 ? '$email' : emailId,
                         style: TextStyle(
                           fontSize: 18,
-                          color:Theme.of(context).accentColor,
+                          color: Theme.of(context).accentColor,
                           letterSpacing: 2,
                         ),
                       ),
@@ -120,9 +120,8 @@ class UserScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top:10.0),
+                      padding: const EdgeInsets.only(top: 10.0),
                       child: Card(
-                      
                           color: Colors.white,
                           margin: EdgeInsets.symmetric(
                               vertical: 10.0, horizontal: 25.0),

@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:intern/screens/rough.dart';
-
+import 'package:intern/screens/product_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CartSymbol extends StatelessWidget {
+  final DocumentSnapshot _trendingReferance;
+  final int check;
+  CartSymbol(this._trendingReferance, this.check);
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => {
-        Navigator.of(context).pushNamed(Rough.routeName)
+        Navigator.of(context).pushNamed(ProductScreen.routeName,
+            arguments: ScreenArguments(_trendingReferance, check))
       },
       child: Stack(children: [
         Container(
@@ -17,7 +21,7 @@ class CartSymbol extends StatelessWidget {
             width: 55,
             decoration: BoxDecoration(
               // border: Border.all(color: Colors.white, width: 0),
-              color: Color.fromRGBO(106, 147, 71, 1),
+              color: Theme.of(context).dialogBackgroundColor,
               borderRadius: BorderRadius.circular(10),
             ),
             alignment: Alignment.center),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intern/utils/google_sign_in.dart';
 import 'package:intern/utils/email_password.dart';
-import '../screens/login.dart';
+import '../screens/login_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MainDrawer extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intern/screens/create_account_screen.dart';
 import 'package:intern/utils/google_sign_in.dart';
-import './home.dart';
+import 'home_screen.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../utils/email_password.dart';
 import '../utils/database.dart';
@@ -195,7 +195,11 @@ class _LoginPageState extends State<LoginPage> {
                                                     backgroundColor:
                                                         MaterialStateProperty
                                                             .all<Color>(
-                                                                Color.fromRGBO(106, 147, 71, 1)),
+                                                                Color.fromRGBO(
+                                                                    106,
+                                                                    147,
+                                                                    71,
+                                                                    1)),
                                                     elevation:
                                                         MaterialStateProperty
                                                             .all<double>(5)),
@@ -217,16 +221,16 @@ class _LoginPageState extends State<LoginPage> {
                                                   .height *
                                               0.03),
                                       InkWell(
-                                      onTap: () => Navigator.of(context)
-                                          .pushReplacementNamed(CreateAccountScreen.routeName),
-                                              
-                                      child: Text(
-                                        'New here ? Create an account',
-                                        style: TextStyle(
-                                            fontSize: 17, color: Colors.blue),
-                                        textAlign: TextAlign.center,
+                                        onTap: () => Navigator.of(context)
+                                            .pushReplacementNamed(
+                                                CreateAccountScreen.routeName),
+                                        child: Text(
+                                          'New here ? Create an account',
+                                          style: TextStyle(
+                                              fontSize: 17, color: Colors.blue),
+                                          textAlign: TextAlign.center,
+                                        ),
                                       ),
-                                    ),
                                       SizedBox(
                                           height: MediaQuery.of(context)
                                                   .size
@@ -250,7 +254,8 @@ class _LoginPageState extends State<LoginPage> {
                                                 backgroundColor:
                                                     MaterialStateProperty.all<
                                                             Color>(
-                                                        Color.fromRGBO(225,160,103,1)),
+                                                        Color.fromRGBO(
+                                                            225, 160, 103, 1)),
                                                 elevation: MaterialStateProperty
                                                     .all<double>(5)),
                                             onPressed: () => {

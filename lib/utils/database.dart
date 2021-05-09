@@ -42,3 +42,12 @@ Future<void> newUser(id) {
           }
       });
 }
+
+Future<String> placeOrder(String userId, String itemId) {
+  CollectionReference orders = FirebaseFirestore.instance.collection('order');
+
+  return orders
+      .add({'userId': userId, 'itemId': itemId, 'orderDate': DateTime.now()})
+      .then((value) => "Success")
+      .catchError((e) => "Error");
+}

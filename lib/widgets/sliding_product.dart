@@ -3,8 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import './cart_symbol.dart';
 
 class SlidingProduct extends StatelessWidget {
-  DocumentSnapshot _trendingReferance;
-  SlidingProduct(this._trendingReferance);
+  final DocumentSnapshot _trendingReferance;
+  final int check;
+  SlidingProduct(this._trendingReferance, this.check);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,29 +20,21 @@ class SlidingProduct extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: Card(
                     elevation: 5,
-                    child: InkWell(
-                      onTap: () {
-                        /*Navigator.of(context).pushNamed(
-                        TrendingDetailItem.routeName,
-                        arguments: _trendingReferance);*/
-                      },
-                      splashColor: Colors.orangeAccent,
-                      child: Hero(
-                          tag: '..',
-                          child: FadeInImage(
-                            placeholder: AssetImage(".."),
-                            image: NetworkImage(_trendingReferance['imageUrl']),
-                            height: MediaQuery.of(context).size.height * 0.3,
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            fit: BoxFit.cover,
-                          ) /*Image.network(
-                      imageUrl,
-                      fit: BoxFit.cover,
-                      height: SizeConfig.blockSizeVertical * 18,
-                      width: SizeConfig.blockSizeHorizontal * 35,
+                    child: Hero(
+                        tag: _trendingReferance['imageUrl'],
+                        child: FadeInImage(
+                          placeholder: AssetImage(".."),
+                          image: NetworkImage(_trendingReferance['imageUrl']),
+                          height: MediaQuery.of(context).size.height * 0.3,
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          fit: BoxFit.cover,
+                        ) /*Image.network(
+                    imageUrl,
+                    fit: BoxFit.cover,
+                    height: SizeConfig.blockSizeVertical * 18,
+                    width: SizeConfig.blockSizeHorizontal * 35,
                     ),*/
-                          ),
-                    ),
+                        ),
                   ),
                   decoration: BoxDecoration(boxShadow: [
                     BoxShadow(
@@ -80,7 +73,7 @@ class SlidingProduct extends StatelessWidget {
                         Spacer(),
                         Padding(
                           padding: const EdgeInsets.only(right: 15),
-                          child: CartSymbol(),
+                          child: CartSymbol(_trendingReferance, check),
                         )
                       ],
                     ))

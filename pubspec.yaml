@@ -55,7 +55,7 @@ flutter:
   assets:
         - asset/images/man.jpg
         - asset/images/propic.png
-        - asset/images/home_open.png
+        - asset/images/home.png
         - asset/images/flag.png
         - asset/images/group.png
         - asset/images/palm.png

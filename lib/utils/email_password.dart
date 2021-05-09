@@ -16,7 +16,7 @@ Future<User> signUp(String email, String password) async {
     assert(await user.getIdToken() != null);
     return user;
   } catch (e) {
-    //HttpException(e);
+    HttpException(e);
     return e;
   }
 }
