@@ -232,6 +232,31 @@ class _ProductScreenState extends State<ProductScreen> {
                 ],
               ),
             ),
+            Positioned(
+                      top:55,
+                      left:15,
+
+                      child:Icon(Icons.arrow_back_outlined)
+
+                   
+                      
+                    
+                      ),
+                    
+                    
+                    
+                    
+              
+                    Positioned(
+                      top:55,
+                      right:15,
+
+                    child: Icon(Icons.favorite_border),
+                    
+                    
+                    
+                    
+                    ),
             _isLoading
                 ? Loader(isCustom: true, loadingTxt: "Placing Order")
                 : Container()
