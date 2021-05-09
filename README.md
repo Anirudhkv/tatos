@@ -1,16 +1,17 @@
-# intern
+# Natur.
 
-A new Flutter project.
+###### Natur. is a mobile application where a customer can view and order furniture of their choice.User can choose from a number of options and add them to their purchase list .
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Functionalities
 
-A few resources to get you started if this is your first Flutter project:
+* Users can login with their respective accounts or via google sign-in method.
+* Users can choose items of their choice and add them to cart for purchase.
+* Users can also edit their profile and update their personal information.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Implementation
+    
+* App development is done with flutter with firebase database connectivity.
+* UI development is done with figma.
+
